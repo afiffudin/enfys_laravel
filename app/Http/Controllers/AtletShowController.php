@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class AtletEditController extends Controller
+{
+    public function show(Request $request)
+    {
+        DB::table('data_master_atlet')->show([
+            'Nama' => $request->Nama,
+            'Nomer_Telepon' => $request->Nomer_Telepon,
+            'Jenis_kelamin' => $request->Jenis_kelamin,
+            'foto_ktp' => $request->foto_ktp,
+            'nomer_ktp' => $request->nomer_ktp,
+            'Alamat' => $request->Alamat,
+            'Cabang_Asal' => $request->Cabang_Asal
+        ]);
+        return redirect('/kedua');
+    }
+    public function index()
+    {
+        $data_master_atlet = DB::table('data_master_atlet')->get();
+        return view('atlet', ['atlet' => $data_master_atlet]);
+    }
+}
