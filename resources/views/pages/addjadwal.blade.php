@@ -4,7 +4,7 @@
     <!-- ini untuk judul page nya , bisa di modifikasi -->
     <!-- ini untuk isi content atlet nya , sampai endsection ya -->
     <div class="container">
-        <h2 align="center" style="margin: 30px;"> TAMBAH JADWALL</h2>
+        <h2 align="center" style="margin: 30px;"> TAMBAH JADWAL</h2>
         <form action="/lihat-jadwal/create" method="POST" enctype="multipart/form-data">
 
             <head>

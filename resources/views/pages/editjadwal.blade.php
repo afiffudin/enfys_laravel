@@ -7,8 +7,15 @@
     <!-- ini untuk judul page nya , bisa di modifikasi -->
     @section('isimain')
     <!-- ini untuk isi content atlet nya , sampai endsection ya -->
+    <style>
+        .Tiket_Pesawat {
+            max-width: 100px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
     <div class="container">
-        <form action="/lihat-jadwal/edit/{id}=update" method="POST" enctype="multipart/form-data">
+        <form action="{{url ('/lihat-jadwal/edit/'.$row->id)}}=update" method="POST" enctype="multipart/form-data">
 
             <head>
                 <meta charset="utf-8">
@@ -24,7 +31,7 @@
                     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
                     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-                    <title>Edit data</title>
+                    <title>Edit data jadwal</title>
                     <!- Bootstrap ->
                         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
                         <!- Font Awesome ->
@@ -49,6 +56,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="PIC"> Tiket Pesawat</label>
+                                    <img id="foto_show" class="Tiket_Pesawat" src="{{ asset('/public/foto/'.$row->Tiket_Pesawat) }}" />
                                     <input type="file" name="Tiket_Pesawat" value="{{$row->Tiket_Pesawat}}" id="Tiket_Pesawat" class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -64,24 +72,41 @@
                                     <input type="text" name="Penginapan" value="{{$row->Penginapan}}" id="Penginapan" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="no_kamar"> no_kamar</label>
+                                    <label for="no_kamar"> no kamar</label>
                                     <input type="text" name="no_kamar" value="{{$row->no_kamar}}" id="no_kamar" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="no_booking"> no_booking</label>
+                                    <label for="no_booking"> no booking</label>
                                     <input type="text" name="no_booking" value="{{$row->no_booking}}" id="no_booking" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Tempat_Pertandingan"> Tempat_Pertandingan</label>
+                                    <label for="Tempat_Pertandingan"> Tempat Pertandingan</label>
                                     <input type="text" name="Tempat_Pertandingan" value="{{$row->Tempat_Pertandingan}}" id="Tempat_Pertandingan" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inventaris_mobil"> Inventaris_mobil</label>
+                                    <label for="Inventaris_mobil"> Inventaris mobil</label>
                                     <input type="text" name="Inventaris_mobil" value="{{$row->Inventaris_mobil}}" id="Inventaris_mobil" class="form-control">
                                 </div>
-                                <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
                                 <input type="submit" class="btn btn-success" value="update">
+                                <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
                                 </input>
+                                <script>
+                                    function readURL(input) {
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function(e) {
+                                                $('#foto_show').attr('src', e.target.result);
+                                            }
+
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
+
+                                    $("#Tiket_Pesawat").change(function() {
+                                        readURL(this);
+                                    });
+                                </script>
                                 </head>
             </body>
         </form>

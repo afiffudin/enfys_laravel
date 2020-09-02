@@ -46,7 +46,7 @@
                                             <label for="no_booking">NO.Booking </label>
                                             <input type="text" name="no_booking" id="no_booking" class="form-control"></input>
                                         </div>
-                                        <input type=" submit" class="btn btn-success" value="update">
+                                        <input type="submit" class="btn btn-success" value="Add">
                                         <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
                                         </input>
                                         <script>

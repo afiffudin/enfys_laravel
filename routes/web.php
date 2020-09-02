@@ -104,8 +104,9 @@ Route::get('/lihat-jadwal/delete/{id}', 'JadwalController@delete');
 Route::get('/lihat-jadwal/cari', 'JadwalController@cari');
 //* SIDEBAR SERAH TERIMA    
 Route::get('/serah-terima/read', function () {
-    $serah = DB::table('jadwal')->get();
-    return view('TambahSerah', ['jadwal' => $serah]);
+    $serah = DB::table('serah_terima_inventaris')->get();
+    $pic = DB::table('jadwal')->get();
+    return view('TambahSerah', ['jadwal' => $serah, 'lihatpic' => $pic]);
 });
 route::post('/serah-terima/create', 'SerahTerimaController@create');
 Route::get('/serah-terima', 'SerahTerimaController@read');

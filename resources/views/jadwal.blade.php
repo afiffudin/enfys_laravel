@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <h2 align="center" style="margin: 30px;">TAMBAH JADWALL</h2>
+        <h2 align="center" style="margin: 30px;">TAMBAH JADWAL</h2>
         <Datatable>
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">

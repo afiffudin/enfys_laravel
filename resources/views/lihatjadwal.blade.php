@@ -9,23 +9,24 @@ if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
 $_SESSION['pesan'] = '';
 ?>
 <style>
-    .foto_ktp {
+    .a-table {
+        margin-top: 10px;
+    }
+
+    .Tiket_Pesawat {
         border-radius: 5px;
         width: 80px;
         height: 50px;
     }
-</style>
-<style>
-    .pesan {
-        display: none;
-        position: fixed;
-        border: 1px solid blue;
-        width: 200px;
-        top: 10px;
-        left: 200px;
-        padding: 5px 10px;
-        background-color: lightskyblue;
-        text-align: center;
+
+    .a-table1 {
+        overflow: auto;
+    }
+
+    .pagination li {
+        float: left;
+        list-style-type: none;
+        margin: 5px;
     }
 </style>
 <section class="content">
@@ -57,7 +58,7 @@ $_SESSION['pesan'] = '';
                     <td>{{$row->id}}</td>
                     <td>{{$row->PIC}}</td>
                     <td>{{$row->atlit}}</td>
-                    <td>{{$row->Tiket_Pesawat}}</td>
+                    <td><img class="Tiket_Pesawat" src="{{ asset('public/foto/'.$row->Tiket_Pesawat) }}" /></td>
                     <td>{{$row->Tanggal_keberangkatan}}</td>
                     <td>{{$row->Tanggal_kepulangan}}</td>
                     <td>{{$row->Penginapan}}</td>
@@ -71,7 +72,7 @@ $_SESSION['pesan'] = '';
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </button>
                         </a>
-                        <a href="{{url('/lihat-jadwal/add/'.$row->id)}}">
+                        <a href="{{url('/lihat-jadwal/add/')}}">
                             <button type="tambah" class="btn btn-primary btn-md dt-edit">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button>

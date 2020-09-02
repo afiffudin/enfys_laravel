@@ -32,20 +32,23 @@
                                 <label>Pilh Inventaris</label>
                                 <select name="Inventaris_mobil" class="form-control">
                                     <option value="">- Pilih Inventaris -</option>
-                                    @foreach ($jadwal as $cbr)
+                                    @foreach ($lihatpic as $cbr)
                                     <option value="{{$cbr->Inventaris_mobil}}">{{$cbr->Inventaris_mobil}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class=" form-group">
-                                <label>PIC </label>
-                                <input type="text" name="PIC" value="{{$cbr->PIC}}" id="PIC" class="form-control">
-
-                            </div>
-                            <div class="modal-footer">
-                                <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
-                                <input type="submit" class="btn btn-success" value="Add">
-                            </div>
+                                <label>Pilh PIC</label>
+                                <select name="Inventaris_mobil" class="form-control">
+                                    <option value="">- Pilih PIC -</option>
+                                    @foreach ($lihatpic as $cbr)
+                                    <option value="{{$cbr->PIC}}">{{$cbr->PIC}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="modal-footer">
+                                    <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
+                                    <input type="submit" class="btn btn-success" value="Add">
+                                </div>
                         </form>
                         <!---  <script type="text/javascript">
                             $("select[name='id_country']").change(function() {
