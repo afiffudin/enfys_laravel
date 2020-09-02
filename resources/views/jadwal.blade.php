@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <h2 align="center" style="margin: 30px;">TAMBAH JADWAL</h2>
+        <h2 align="center" style="margin: 30px;">TAMBAH JADWALL</h2>
         <Datatable>
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -28,14 +28,6 @@
                             <div class="form-group">
                                 <label>PIC</label>
                                 <input type="text" class="form-control" name="PIC" required>
-                            </div>
-                            <div class="form-group">
-                                <label>list atlit</label>
-                                <input type="text" class="form-control" name="list_atlit" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Tiket Pesawat</label>
-                                <input type="text" class="form-control" name="Tiket_Pesawat" required />
                             </div>
                             <div class="form-group">
                                 <label>Tanggal keberangkatan</label>

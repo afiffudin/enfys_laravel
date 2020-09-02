@@ -36,7 +36,8 @@ class AdminCaborController extends Controller
     public function redirect_update($id)
     {
         $atlet_u = DB::table('admin_cabor')->get()->where("id", $id);
-        return view('editadmincabor', ['admincabor' => $atlet_u]);
+        $atlet = DB::table('cabor')->get();
+        return view('editadmincabor', ['admincabor' => $atlet_u, 'cabor' => $atlet]);
     }
     public function update(Request $r)
     {

@@ -44,6 +44,8 @@ $_SESSION['pesan'] = '';
                     <th>Tanggal keberangkatan</th>
                     <th>Tanggal kepulangan</th>
                     <th>Penginapan</th>
+                    <th>no kamar</th>
+                    <th>no booking</th>
                     <th>Tempat Pertandingan</th>
                     <th>Inventaris mobil</th>
                     <th>Action</th>
@@ -54,17 +56,24 @@ $_SESSION['pesan'] = '';
                 <tr>
                     <td>{{$row->id}}</td>
                     <td>{{$row->PIC}}</td>
-                    <td>{{$row->list_atlit}}</td>
+                    <td>{{$row->atlit}}</td>
                     <td>{{$row->Tiket_Pesawat}}</td>
                     <td>{{$row->Tanggal_keberangkatan}}</td>
                     <td>{{$row->Tanggal_kepulangan}}</td>
                     <td>{{$row->Penginapan}}</td>
+                    <td>{{$row->no_kamar}}</td>
+                    <td>{{$row->no_booking}}</td>
                     <td>{{$row->Tempat_Pertandingan}}</td>
                     <td>{{$row->Inventaris_mobil}}</td>
                     <td>
                         <a href="{{url ('/lihat-jadwal/edit/'.$row->id)}}">
                             <button type="edit" class="btn btn-primary btn-md dt-edit">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                        </a>
+                        <a href="{{url('/lihat-jadwal/add/'.$row->id)}}">
+                            <button type="tambah" class="btn btn-primary btn-md dt-edit">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button>
                         </a>
                         <a href="{{url ('/lihat-jadwal/delete/'.$row->id)}}">
@@ -90,9 +99,6 @@ $_SESSION['pesan'] = '';
         }, 500);
     });
     //            angka 3000 dibawah ini artinya pesan akan hilang dalam 3 detik setelah muncul
-    setTimeout(function() {
-        $(".pesan").fadeOut('slow');
-    }, 3000);
 </script>
 <script type="text/javascript">
     $(document).ready(function() {

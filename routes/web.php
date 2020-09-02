@@ -88,8 +88,17 @@ Route::post('/jadwal-pertandingan/create', 'PertandinganController@create');
 Route::get('/jadwal-pertandingan', 'PertandinganController@read');
 //* END SIDEBAR PERTANDINGAN
 //*SIDEBAR status terkahir
+Route::get('/lihat-jadwal/edit', function () {
+    $edit = DB::table('data_master_atlet')->get();
+    return view('pages/editjadwal', ['jadwal' => $edit]);
+});
+Route::get('/lihat-jadwal/add', function () {
+    $lihat = DB::table('data_master_atlet')->get();
+    return view('pages/addjadwal', ['addjadwal' => $lihat]);
+});
+Route::post('/lihat-jadwal/create', 'JadwalController@create');
 Route::get('/lihat-jadwal', 'JadwalController@read');
-Route::get('/lihat-jadwal/edit/{id}=update', 'JadwalController@update');
+Route::post('/lihat-jadwal/edit/{id}=update', 'JadwalController@update');
 Route::get('/lihat-jadwal/edit/{id}', 'JadwalController@redirect_update');
 Route::get('/lihat-jadwal/delete/{id}', 'JadwalController@delete');
 Route::get('/lihat-jadwal/cari', 'JadwalController@cari');

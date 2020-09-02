@@ -10,18 +10,24 @@ class JadwalController extends Controller
     // CREATE
     public function create(Request $r)
     {
-        $cabor_c = DB::table('jadwal')->insert([
+        $pict = $r->file('Tiket_Pesawat');
+        $path = public_path('/public/foto/');
+        $img = rand() . "." . $pict->getClientOriginalExtension();
+        $pict->move($path, $img);
+        DB::table('jadwal')->insert([
             'PIC' => $r->PIC,
-            'list_atlit' => $r->list_atlit,
-            'Tiket_Pesawat' => $r->Tiket_Pesawat,
+            'atlit' => $r->atlit,
+            'Tiket_Pesawat' => $img,
             'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
             'Tanggal_kepulangan' => $r->Tanggal_kepulangan,
             'Penginapan' => $r->Penginapan,
+            'no_kamar' => $r->no_kamar,
+            'no_booking' => $r->no_booking,
             'Tempat_Pertandingan' => $r->Tempat_Pertandingan,
             'Inventaris_mobil' => $r->Inventaris_mobil
 
         ]);
-        return back();
+        return redirect('/lihat-jadwal');
     }
     // READ
     public function read()
@@ -33,17 +39,20 @@ class JadwalController extends Controller
     public function redirect_update($id)
     {
         $atlet_u = DB::table('jadwal')->get()->where("id", $id);
-        return view('pages/editjadwal', ['lihatjadwal' => $atlet_u]);
+        $atlet = DB::table('data_master_atlet')->get();
+        return view('pages/editjadwal', ['lihatjadwal' => $atlet_u, 'atlet' => $atlet]);
     }
     public function update(Request $r)
     {
         $this->validate($r, [
             'PIC' => 'required',
-            'list_atlit' => 'required',
+            'atlit' => 'required',
             'Tiket_Pesawat' => 'required',
             'Tanggal_keberangkatan' => 'required',
             'Tanggal_kepulangan' => 'required',
             'Penginapan' => 'required',
+            'No_kamar' => 'required',
+            'No_booking' => 'required',
             'Tempat_Pertandingan' => 'required',
             'Inventaris_mobil' => 'required'
 
@@ -51,11 +60,13 @@ class JadwalController extends Controller
         ]);
         DB::table('jadwal')->where('id', $r->id)->update([
             'PIC' => $r->PIC,
-            'list_atlit' => $r->list_atlit,
-            'Tiket_Pesawat' => $r->Tiket_Pesawat,
+            'atlit' => $r->atlit,
+            'Tiket_Pesawat' => $img,
             'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
             'Tanggal_kepulangan' => $r->Tanggal_kepulangan,
             'Penginapan' => $r->Penginapan,
+            'No_kamar' => $r->No_kamar,
+            'No_booking' => $r->No_booking,
             'Tempat_Pertandingan' => $r->Tempat_Pertandingan,
             'Inventaris_mobil' => $r->Inventaris_mobil
         ]);
@@ -71,9 +82,9 @@ class JadwalController extends Controller
     public function cari(Request $request)
     {
         $cari = $request->cari;
-        $cabor = DB::table('cabor')
+        $cabor = DB::table('jadwal')
             ->where('id', 'like', "%" . $cari . "%")
             ->paginate();
-        return view('cabor', ['cabor' => $cabor]);
+        return view('lihatjadwal', ['jadwal' => $cabor]);
     }
 }

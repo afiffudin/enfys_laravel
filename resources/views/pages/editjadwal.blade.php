@@ -1,11 +1,14 @@
     <!-- ini buat manggil master page nya -->
-    @foreach($lihatjadwal as $row)
+    @section('css')
+    @show
+    @section('content')
+    @foreach($lihatjadwal as $key=>$row)
     @section('judulmain','editjadwalmain')
     <!-- ini untuk judul page nya , bisa di modifikasi -->
+    @section('isimain')
     <!-- ini untuk isi content atlet nya , sampai endsection ya -->
     <div class="container">
-        <h2 align="center" style="margin: 30px;"> LIHAT JADWAL</h2>
-        <form action="/lihat-jadwal/edit/{{$row->id}}=update" method="POST">
+        <form action="/lihat-jadwal/edit/{id}=update" method="POST" enctype="multipart/form-data">
 
             <head>
                 <meta charset="utf-8">
@@ -28,61 +31,58 @@
                             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <form action="{{url('/lihat-jadwal/edit/{id}=update')}}" method="post" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="PIC">PIC</label>
-                                            <input type="text" name="PIC" value="{{$row->PIC}}" id="PIC" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="list_atlit">list atlit</label>
-                                            <input type="list_atlit" name="list_atlit" value="{{$row->list_atlit}}" id="list_atlit" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Tiket_Pesawat">Tiket Pesawat</label>
-                                            <input type="Tiket_Pesawat" name="Tiket_Pesawat" value="{{$row->Tiket_Pesawat}}" id="Tiket_Pesawat" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Tanggal_keberangkatan">Tanggal keberangkatan</label><br>
-                                            <input name="Tanggal_keberangkatan" type="date" id="Tanggal_keberangkatan" class="form-control" value="{{$row->Tanggal_kepulangan}}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Tanggal_kepulangan">Tanggal kepulangan</label>
-                                            <input type="date" name="Tanggal_kepulangan" class="form-control" id="Tanggal_kepulangan" class="form-control" value="{{$row->Tanggal_kepulangan}}"></input>
-                                        </div>
-                                    </form>
-                                    <div class="form-group">
-                                        <label for="Penginapan">Penginapan </label>
-                                        <input type="text" name="Penginapan" textarea class="form-control" value="{{$row->Penginapan}}"></input>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tempat Pertandingan</label>
-                                        <input type="text" name="Tempat_Pertandingan" textarea class="form-control" value="{{$row->Tempat_Pertandingan}}"></input>
-                                        <p class="text-danger" id="err_Tempat_Pertandingan"></p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Inventaris_mobil">Inventaris mobil </label>
-                                        <input type="Inventaris_mobil" name="Inventaris_mobil" class="form-control" value="{{$row->Inventaris_mobil}}"><br>
-                                    </div>
-                                    <input type="submit" class="btn btn-success" value="update">
-                                    <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
-                                    </input>
-                                    <script>
-                                        function readURL(input) {
-                                            if (input.files && input.files[0]) {
-                                                var reader = new FileReader();
-
-                                                reader.onload = function(e) {
-                                                    $('#foto_show').attr('src', e.target.result);
-                                                }
-
-                                                reader.readAsDataURL(input.files[0]);
-                                            }
-                                        }
-
-                                        $("#foto_ktp").change(function() {
-                                            readURL(this);
-                                        });
-                                    </script>
-                                    @endforeach
+                                <input type="hidden" value="{{$row->id}}" name="id">
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                    <label for="PIC"> PIC</label>
+                                    <input type="text" name="PIC" value="{{$row->PIC}}" id="PIC" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>List Atlit</label>
+                                    <select name="Nama" class="form-control">
+                                        <option value="">- Pilih Atlit -</option>
+                                        @foreach ($atlet as $cbr)
+                                        <option value="{{$cbr->Nama}}">{{$cbr->Nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PIC"> Tiket Pesawat</label>
+                                    <input type="file" name="Tiket_Pesawat" value="{{$row->Tiket_Pesawat}}" id="Tiket_Pesawat" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Tanggal_keberangkatan"> Tanggal keberangkatan</label>
+                                    <input type="date" name="Tanggal_keberangkatan" value="{{$row->Tanggal_keberangkatan}}" id="Tanggal_keberangkatan" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Tanggal_kepulangan"> Tanggal kepulangan</label>
+                                    <input type="date" name="Tanggal_kepulangan" value="{{$row->Tanggal_kepulangan}}" id="Tanggal_kepulangan" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Penginapan"> Penginapan</label>
+                                    <input type="text" name="Penginapan" value="{{$row->Penginapan}}" id="Penginapan" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="no_kamar"> no_kamar</label>
+                                    <input type="text" name="no_kamar" value="{{$row->no_kamar}}" id="no_kamar" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="no_booking"> no_booking</label>
+                                    <input type="text" name="no_booking" value="{{$row->no_booking}}" id="no_booking" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Tempat_Pertandingan"> Tempat_Pertandingan</label>
+                                    <input type="text" name="Tempat_Pertandingan" value="{{$row->Tempat_Pertandingan}}" id="Tempat_Pertandingan" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inventaris_mobil"> Inventaris_mobil</label>
+                                    <input type="text" name="Inventaris_mobil" value="{{$row->Inventaris_mobil}}" id="Inventaris_mobil" class="form-control">
+                                </div>
+                                <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
+                                <input type="submit" class="btn btn-success" value="update">
+                                </input>
+                                </head>
+            </body>
+        </form>
+        @endforeach

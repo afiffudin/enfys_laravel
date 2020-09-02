@@ -1,6 +1,5 @@
     <!-- ini buat manggil master page nya -->
-    @section('css')
-    @show
+
     @section('content')
     @foreach($admincabor as $row)
     @section('judulmain','editadminmain')
@@ -10,7 +9,8 @@
 
     <div class="container">
         <h2 align="center" style="margin: 30px;"> EDIT ADMIN CABOR</h2>
-        <form action="/Data-admincabor/edit/{{$row->id}}=update" method="POST">
+        <form action="/Data-admincabor/edit/{{$row->id}}=update" method="POST" enctype="multipart/form-data">
+
 
             <head>
                 <meta charset="utf-8">
@@ -42,18 +42,19 @@
                                     <input type="text" name="Nama" value="{{$row->Nama}}" id="Nama" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="nama_cabor">nama cabor</label>
-                                    <input type="nama_cabor" name="nama_cabor" value="{{$row->nama_cabor}}" id="nama_cabor" class="form-control">
+                                    <label>Cabor</label>
+                                    <select name="nama_cabor" class="form-control">
+                                        <option value="">- Pilih Cabor -</option>
+                                        @foreach($cabor as $cbr)
+                                        <option value="{{$cbr->nama_cabor}}">{{$cbr->nama_cabor}}</option>
+                                        @endforeach
+                                    </select>
+                                    <p class="text-danger" id="err_nama_cabor"></p>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">email</label>
                                     <input type="email" name="email" value="{{$row->email}}" id="email" class="form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email">email </label>
-                                    <input type="email" name="email" class="form-control" value="{{$row->email}}"><br>
                                 </div>
                                 <div class="form-group">
                                     <label for="username">username </label>

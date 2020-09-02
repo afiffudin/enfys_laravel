@@ -25,33 +25,34 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label>stnk </label>
+                                <input type="hidden" name="id" id="id">
                                 <input type="text" class="form-control" name="stnk" required>
                             </div>
                             <div class="form-group">
                                 <label>Pilh Inventaris</label>
-                                <select name="inventaris" class="form-control">
+                                <select name="Inventaris_mobil" class="form-control">
                                     <option value="">- Pilih Inventaris -</option>
                                     @foreach ($jadwal as $cbr)
-                                    <option value="{{$cbr->Inventaris_mobil,$cbr->PIC}}">{{$cbr->Inventaris_mobil,$cbr->PIC}}</option>
+                                    <option value="{{$cbr->Inventaris_mobil}}">{{$cbr->Inventaris_mobil}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class=" form-group">
                                 <label>PIC </label>
                                 <input type="text" name="PIC" value="{{$cbr->PIC}}" id="PIC" class="form-control">
+
                             </div>
                             <div class="modal-footer">
                                 <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
                                 <input type="submit" class="btn btn-success" value="Add">
                             </div>
                         </form>
-
-                        <script type="text/javascript">
+                        <!---  <script type="text/javascript">
                             $("select[name='id_country']").change(function() {
                                 var id_country = $(this).val();
                                 var token = $("input[name='_token']").val();
                                 $.ajax({
-                                    url: "<?php echo route('select-ajax') ?>",
+                                    url: "<!?php echo route('select-ajax') ?>",
                                     method: 'POST',
                                     data: {
                                         id_country: id_country,
@@ -63,9 +64,7 @@
                                     }
                                 });
                             });
-                        </script>
-
-
+                        </script>!-->
     </body>
 
     </html>

@@ -15,7 +15,7 @@
         }
     </style>
     <div class="container">
-        <form action="/Data-Atlet/edit/{{$row->id}}=update" method="POST">
+        <form action="/Data-Atlet/edit/{{$row->id}}=update" method="POST" enctype="multipart/form-data">
 
             <head>
                 <meta charset="utf-8">
@@ -74,8 +74,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Cabor</label>
-                                        <input type="text" name="nama_cabor" textarea class="form-control" value="{{$row->nama_cabor}}"></input>
-                                        <p class="text-danger" id="err_nama_cabor"></p>
+                                        <select name="nama_cabor" class="form-control">
+                                            <option value="">- Pilih Cabor -</option>
+                                            @foreach ($cabor as $cbr)
+                                            <option value="{{$cbr->nama_cabor}}">{{$cbr->nama_cabor}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">email </label>

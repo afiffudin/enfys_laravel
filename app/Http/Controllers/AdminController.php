@@ -36,7 +36,8 @@ class AdminController extends Controller
     public function redirect_update($id)
     {
         $atlet_u = DB::table('data_master_atlet')->get()->where("id", $id);
-        return view('atletedit', ['atlet' => $atlet_u]);
+        $atlet = DB::table('cabor')->get();
+        return view('atletedit', ['atlet' => $atlet_u, 'cabor' => $atlet]);
     }
     public function update(Request $r)
     {
@@ -51,12 +52,14 @@ class AdminController extends Controller
             'email' => 'required'
         ]);
         $pict = $r->file('foto_ktp');
-        $path = \storage_path('/public/picture/');
+        $path = public_path('/public/picture/');
+        $img = rand() . "." . $pict->getClientOriginalExtension();
+        $pict->move($path, $img);
         DB::table('data_master_atlet')->where('id', $r->id)->update([
             'Nama' => $r->Nama,
             'Nomer_Telepon' => $r->Nomer_Telepon,
             'Jenis_kelamin' => $r->Jenis_kelamin,
-            'foto_ktp' => $r->foto_ktp,
+            'foto_ktp' => $img,
             'nomer_ktp' => $r->nomer_ktp,
             'Alamat' => $r->Alamat,
             'nama_cabor' => $r->nama_cabor,

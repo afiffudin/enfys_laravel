@@ -10,13 +10,13 @@ class SerahTerimaController extends Controller
     public function myform()
     {
         $pic = DB::table('jadwal')->pluck("PIC", "id")->all();
-        return view('editketuakoni', compact('jadwal'));
+        return view('TambahSerah', compact('jadwal'));
     }
     public function selectajax(Request $request)
     {
         if ($request->ajax()) {
             $pic = DB::table('jadwal')->where('id', $request->id)->pluck("PIC", "id")->all();
-            $data = view('editketuakoni', compact('jadwal'))->render();
+            $data = view('TambahSerah', compact('jadwal'))->render();
             return response()->json(['options' => $data]);
         }
     }
@@ -25,7 +25,6 @@ class SerahTerimaController extends Controller
     {
         $cabor_c = DB::table('serah_terima_inventaris')->insert([
             'stnk' => $r->stnk,
-            'Inventaris_mobil' => $r->Inventaris_mobil,
             'Inventaris_mobil' => $r->Inventaris_mobil,
             'PIC' => $r->PIC
         ]);
@@ -49,9 +48,12 @@ class SerahTerimaController extends Controller
             'stnk' => 'required',
             'Inventaris_mobil' => 'required',
             'PIC' => 'required'
-
-
         ]);
+        DB::table('serah_terima_inventaris')->join('jadwal', 'id', 'real_id')
+            ->join('jadwal', 'serah_terima_inventaris')
+            ->select('PIC', 'inventaris_mobil')
+            ->get();
+
         DB::table('serah_terima_inventaris')->where('id', $r->id)->update([
             'stnk' => $r->stnk,
             'Inventaris_mobil' => $r->Inventaris_mobil,

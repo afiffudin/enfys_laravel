@@ -12,8 +12,6 @@ class PertandinganController extends Controller
     {
         $cabor_c = DB::table('jadwal')->insert([
             'PIC' => $r->PIC,
-            'list_atlit' => $r->list_atlit,
-            'Tiket_Pesawat' => $r->Tiket_Pesawat,
             'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
             'Tanggal_kepulangan' => $r->Tanggal_kepulangan,
             'Penginapan' => $r->Penginapan,
@@ -39,11 +37,13 @@ class PertandinganController extends Controller
     {
         $this->validate($r, [
             'PIC' => 'required',
-            'list_atlit' => 'required',
+            'atlit' => 'required',
             'Tiket_Pesawat' => 'required',
             'Tanggal_keberangkatan' => 'required',
             'Tanggal_kepulangan' => 'required',
             'Penginapan' => 'required',
+            'No_kamar' => 'required',
+            'No_booking' => 'required',
             'Tempat_Pertandingan' => 'required',
             'Inventaris_mobil' => 'required'
 
@@ -51,11 +51,13 @@ class PertandinganController extends Controller
         ]);
         DB::table('jadwal')->where('id', $r->id)->update([
             'PIC' => $r->PIC,
-            'list_atlit' => $r->list_atlit,
+            'atlit' => $r->atlit,
             'Tiket_Pesawat' => $r->Tiket_Pesawat,
             'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
             'Tanggal_kepulangan' => $r->Tanggal_kepulangan,
             'Penginapan' => $r->Penginapan,
+            'No_kamar' => $r->No_kamar,
+            'No_booking' => $r->No_booking,
             'Tempat_Pertandingan' => $r->Tempat_Pertandingan,
             'Inventaris_mobil' => $r->Inventaris_mobil
         ]);
