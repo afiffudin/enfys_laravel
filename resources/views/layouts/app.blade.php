@@ -47,13 +47,6 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
 
-
-
-
-
-
-
-
     <style>
         .table-container {
             overflow: auto;
