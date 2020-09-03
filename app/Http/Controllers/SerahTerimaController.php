@@ -7,28 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 class SerahTerimaController extends Controller
 {
-    public function myform()
-    {
-        $pic = DB::table('jadwal')->pluck("PIC", "id")->all();
-        return view('TambahSerah', compact('jadwal'));
-    }
-    public function selectajax(Request $request)
-    {
-        if ($request->ajax()) {
-            $pic = DB::table('jadwal')->where('id', $request->id)->pluck("PIC", "id")->all();
-            $data = view('TambahSerah', compact('jadwal'))->render();
-            return response()->json(['options' => $data]);
-        }
-    }
+
     // CREATE
     public function create(Request $r)
     {
-        $cabor_c = DB::table('serah_terima_inventaris')->insert([
+
+        DB::table('serah_terima_inventaris')->insert([
             'stnk' => $r->stnk,
             'Inventaris_mobil' => $r->Inventaris_mobil,
             'PIC' => $r->PIC
         ]);
-        return back();
+        return redirect('/serah-terima');
     }
     // READ
     public function read()
@@ -49,11 +38,6 @@ class SerahTerimaController extends Controller
             'Inventaris_mobil' => 'required',
             'PIC' => 'required'
         ]);
-        DB::table('serah_terima_inventaris')->join('jadwal', 'id', 'real_id')
-            ->join('jadwal', 'serah_terima_inventaris')
-            ->select('PIC', 'inventaris_mobil')
-            ->get();
-
         DB::table('serah_terima_inventaris')->where('id', $r->id)->update([
             'stnk' => $r->stnk,
             'Inventaris_mobil' => $r->Inventaris_mobil,

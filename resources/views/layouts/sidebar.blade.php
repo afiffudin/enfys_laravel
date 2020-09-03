@@ -54,7 +54,7 @@
       <ul class="treeview-menu">
         <li class="active"><a href="{{url ('/jadwal-pertandingan')}}"><i class="fa fa-calendar"></i>Buat Jadwal</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i> Update Status Terakhir</a></li>
-        <li><a href="{{url('/serah-terima/read')}}"><i class="fa fa-circle-o"></i> Buat Serah Terima</a></li>
+        <li><a href="{{url('/serah-terima/create')}}"><i class="fa fa-circle-o"></i> Buat Serah Terima</a></li>
     </li>
     </ul>
     </li>
@@ -69,7 +69,7 @@
         <li class="active"><a href="{{url ('/lihat-jadwal')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal CABOR/PIC</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i> Update Status Terakhir</a></li>
         <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Emergency</a></li>
-        <li><a href="index2.html"><i class="fa fa-circle-o"></i> Serah Terima/Pengambilan</a></li>
+        <li><a href="{{url ('/serah-terima/read')}}"><i class="fa fa-circle-o"></i> Serah Terima/Pengambilan</a></li>
     </li>
     </ul>
   </section>

@@ -3,6 +3,27 @@
     @section('judulmain','addjadwalmain')
     <!-- ini untuk judul page nya , bisa di modifikasi -->
     <!-- ini untuk isi content atlet nya , sampai endsection ya -->
+    <style>
+        .a-table {
+            margin-top: 10px;
+        }
+
+        .Tiket_Pesawat {
+            border-radius: 100px;
+            width: 80px;
+            height: 50px;
+        }
+
+        .a-table1 {
+            overflow: auto;
+        }
+
+        .pagination li {
+            float: left;
+            list-style-type: none;
+            margin: 5px;
+        }
+    </style>
     <div class="container">
         <h2 align="center" style="margin: 30px;"> TAMBAH JADWAL</h2>
         <form action="/lihat-jadwal/create" method="POST" enctype="multipart/form-data">
@@ -41,6 +62,7 @@
                                         </div>
                                         <div Class="form-group">
                                             <label for="Tiket_Pesawat">Tiket Pesawat</label>
+                                            <img id="foto_show" class="Tiket_Pesawat" />
                                             <input type="file" name="Tiket_Pesawat" id="Tiket_Pesawat" class="form-control">
                                         </div>
                                         <div class="form-group">
@@ -51,7 +73,7 @@
                                             <label for="no_booking">NO.Booking </label>
                                             <input type="text" name="no_booking" id="no_booking" class="form-control"></input>
                                         </div>
-                                        <input type="submit" class="btn btn-success" value="update">
+                                        <input type="submit" class="btn btn-success" value="Add">
                                         <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
                                         </input>
                                         <script>
@@ -67,7 +89,7 @@
                                                 }
                                             }
 
-                                            $("#foto_ktp").change(function() {
+                                            $("#Tiket_Pesawat").change(function() {
                                                 readURL(this);
                                             });
                                         </script>

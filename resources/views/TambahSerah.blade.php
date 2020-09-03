@@ -32,17 +32,17 @@
                                 <label>Pilh Inventaris</label>
                                 <select name="Inventaris_mobil" class="form-control">
                                     <option value="">- Pilih Inventaris -</option>
-                                    @foreach ($lihatpic as $cbr)
-                                    <option value="{{$cbr->Inventaris_mobil}}">{{$cbr->Inventaris_mobil}}</option>
+                                    @foreach ($lihatpic as $lihat)
+                                    <option value="{{$lihat->Inventaris_mobil}}">{{$lihat->Inventaris_mobil}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class=" form-group">
                                 <label>Pilh PIC</label>
-                                <select name="Inventaris_mobil" class="form-control">
+                                <select name="PIC" class="form-control">
                                     <option value="">- Pilih PIC -</option>
-                                    @foreach ($lihatpic as $cbr)
-                                    <option value="{{$cbr->PIC}}">{{$cbr->PIC}}</option>
+                                    @foreach ($lihatpic as $lihat)
+                                    <option value="{{$lihat->PIC}}">{{$lihat->PIC}}</option>
                                     @endforeach
                                 </select>
                                 <div class="modal-footer">
