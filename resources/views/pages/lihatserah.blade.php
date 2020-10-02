@@ -8,8 +8,10 @@
                 <tr>
                     <th>ID</th>
                     <th>STNK</th>
+                    <th>Tanggal keberangkatan
                     <th>Inventaris Mobil</th>
                     <th>PIC</th>
+                    <th>DI Terima Oleh</th>
                     <th>ACTION</th>
             </thead>
             <tbody>
@@ -17,20 +19,22 @@
                 <tr>
                     <td>{{$row->id}}</td>
                     <td>{{$row->stnk}}</td>
+                    <td>{{$row->Tanggal_keberangkatan}}</td>
                     <td>{{$row->Inventaris_mobil}}</td>
                     <td>{{$row->PIC}}</td>
+                    <td>{{$row->diterima_oleh}}</td>
                     <td>
-                        <a href="{{url ('/serah-terima/edit/'.$row->id)}}">
+                        <a href="{{url('/serah-terima/edit/'.$row->id)}}">
                             <button type="edit" class="btn btn-primary btn-xs dt-edit">
                                 <span class="fa fa-pencil" aria-hidden="true"></span>
                             </button>
                         </a>
-                        <a href="{{url ('/serah-terima/delete/'.$row->id)}}">
+                        <a href="{{url('/serah-terima/delete/'.$row->id)}}">
                             <button type="delete" class="btn btn-danger btn-xs dt-delete">
                                 <span class="fa fa-remove" aria-hidden="true"></span>
                             </button>
-                        </a>
                     </td>
+                    </a>
                 </tr>
                 @endforeach
             </tbody>

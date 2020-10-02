@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class JadwalController extends Controller
 {
-    // CREATE
     public function create(Request $r)
+    // CREATE
     {
         $pict = $r->file('Tiket_Pesawat');
         $path = public_path('/public/foto/');
         $img = rand() . "." . $pict->getClientOriginalExtension();
         $pict->move($path, $img);
         DB::table('jadwal')->insert([
-            'PIC' => $r->PIC,
-            'atlit' => $r->atlit,
+            'id_inventaris' => $r->id_inventaris,
+            'Nama' => $r->Nama,
             'Tiket_Pesawat' => $img,
             'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
             'Tanggal_kepulangan' => $r->Tanggal_kepulangan,
@@ -27,8 +29,9 @@ class JadwalController extends Controller
             'Inventaris_mobil' => $r->Inventaris_mobil
 
         ]);
-        return redirect('/lihat-jadwal');
+        return back();
     }
+
     // READ
     public function read()
     {
@@ -36,9 +39,9 @@ class JadwalController extends Controller
         return view('lihatjadwal', ['lihatjadwal' => $jadwal_r]);
     }
     // UPDATE
-    public function redirect_update($id)
+    public function redirect_update($id_jadwal)
     {
-        $atlet_u = DB::table('jadwal')->get()->where("id", $id);
+        $atlet_u = DB::table('jadwal')->get()->where("id_jadwal", $id_jadwal);
         $atlet = DB::table('data_master_atlet')->get();
         return view('pages/editjadwal', ['lihatjadwal' => $atlet_u, 'atlet' => $atlet]);
     }
@@ -46,38 +49,57 @@ class JadwalController extends Controller
     {
         $this->validate($r, [
             'PIC' => 'required',
-            'atlit' => 'required',
+            'Nama' => 'required',
             'Tiket_Pesawat' => 'required',
             'Tanggal_keberangkatan' => 'required',
             'Tanggal_kepulangan' => 'required',
             'Penginapan' => 'required',
-            'No_kamar' => 'required',
-            'No_booking' => 'required',
+            'no_kamar' => 'required',
+            'no_booking' => 'required',
             'Tempat_Pertandingan' => 'required',
             'Inventaris_mobil' => 'required'
-
-
         ]);
+        $pict = $r->file('Tiket_Pesawat');
+        $path = public_path('/public/foto/');
+        $img = rand() . "." . $pict->getClientOriginalExtension();
+        $pict->move($path, $img);
         DB::table('jadwal')->where('id', $r->id)->update([
             'PIC' => $r->PIC,
-            'atlit' => $r->atlit,
+            'Nama' => $r->Nama,
             'Tiket_Pesawat' => $img,
             'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
             'Tanggal_kepulangan' => $r->Tanggal_kepulangan,
             'Penginapan' => $r->Penginapan,
-            'No_kamar' => $r->No_kamar,
-            'No_booking' => $r->No_booking,
+            'no_kamar' => $r->no_kamar,
+            'no_booking' => $r->no_booking,
             'Tempat_Pertandingan' => $r->Tempat_Pertandingan,
             'Inventaris_mobil' => $r->Inventaris_mobil
+
+
         ]);
-        return redirect('/jadwal-pertandingan');
-    }
-    // DELETE
-    public function delete($id)
-    {
-        DB::table('jadwal')->where('id', $id)->delete();
         return redirect('/lihat-jadwal');
     }
+    // DELETE
+    public function delete($id_jadwal)
+    {
+        DB::table('jadwal')->where('id_jadwal', $id_jadwal)->delete();
+        return redirect('/lihat-jadwal');
+    }
+    public function tambah(Request $r)
+    {
+        $pict = $r->file('Tiket_Pesawat');
+        $path = public_path('/public/foto/');
+        $img = rand() . "." . $pict->getClientOriginalExtension();
+        $pict->move($path, $img);
+        DB::table('jadwal')->insert([
+            'Nama' => $r->Nama,
+            'Tiket_Pesawat' => $img,
+            'no_kamar' => $r->no_kamar,
+            'no_booking' => $r->no_booking
+        ]);
+        return redirect('/lihat-jadwal');
+    }
+
 
     public function cari(Request $request)
     {

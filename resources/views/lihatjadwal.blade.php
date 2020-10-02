@@ -39,6 +39,7 @@ $_SESSION['pesan'] = '';
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>ID Inventaris</th>
                     <th>PIC</th>
                     <th>list atlit</th>
                     <th>Tiket Pesawat</th>
@@ -55,9 +56,10 @@ $_SESSION['pesan'] = '';
             <tbody>
                 @foreach($lihatjadwal as $key=>$row)
                 <tr>
-                    <td>{{$row->id}}</td>
+                    <td>{{$row->id_jadwal}}</td>
+                    <td>{{$row->id_inventaris}}</td>
                     <td>{{$row->PIC}}</td>
-                    <td>{{$row->atlit}}</td>
+                    <td>{{$row->Nama}}</td>
                     <td><img class="Tiket_Pesawat" src="{{ asset('public/foto/'.$row->Tiket_Pesawat) }}" /></td>
                     <td>{{$row->Tanggal_keberangkatan}}</td>
                     <td>{{$row->Tanggal_kepulangan}}</td>
@@ -67,7 +69,7 @@ $_SESSION['pesan'] = '';
                     <td>{{$row->Tempat_Pertandingan}}</td>
                     <td>{{$row->Inventaris_mobil}}</td>
                     <td>
-                        <a href="{{url ('/lihat-jadwal/edit/'.$row->id)}}">
+                        <a href="{{url ('/lihat-jadwal/edit/'.$row->id_jadwal)}}">
                             <button type="edit" class="btn btn-primary btn-md dt-edit">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </button>
@@ -77,7 +79,7 @@ $_SESSION['pesan'] = '';
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button>
                         </a>
-                        <a href="{{url ('/lihat-jadwal/delete/'.$row->id)}}">
+                        <a href="{{url ('/lihat-jadwal/delete/'.$row->id_jadwal)}}">
                             <button type="delete" class="btn btn-danger btn-md dt-delete">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </button>

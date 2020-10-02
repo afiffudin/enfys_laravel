@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,8 +72,8 @@ Route::get('/Data-cabor/delete/{id}', 'CaborController@delete'); //D OK
 Route::get('/Data-cabor/cari', 'CaborController@cari');
 
 /* SIDEBAR - KETUA KONI */
+$ketuakoni = DB::table('data_master_nomer_ketua_koni')->get();
 Route::get('/Data-ketuakoni/tambah', function () {
-    $ketuakoni = DB::table('data_master_nomer_ketua_koni')->get();
     return view('data_master_nomer_ketua_koni', ['ketuakoni' => $ketuakoni]);
 });
 Route::get('/Data-ketuakoni/edit', function () {
@@ -88,25 +91,27 @@ Route::post('/jadwal-pertandingan/create', 'PertandinganController@create');
 Route::get('/jadwal-pertandingan', 'PertandinganController@read');
 //* END SIDEBAR PERTANDINGAN
 //*SIDEBAR status terkahir
-Route::get('/lihat-jadwal/edit', function () {
+Route::get('/lihat-jadwal/editt', function () {
     $edit = DB::table('data_master_atlet')->get();
     return view('pages/editjadwal', ['jadwal' => $edit]);
 });
 Route::get('/lihat-jadwal/add', function () {
-    $lihat = DB::table('data_master_atlet')->get();
-    return view('pages/addjadwal', ['addjadwal' => $lihat]);
+    $atlet_u = DB::table('data_master_atlet')->get();
+    $pic = DB::table('jadwal')->get();
+    return view('pages/addjadwal', ['lihatdata' => $pic, 'cabor' => $atlet_u,]);
 });
 Route::post('/lihat-jadwal/create', 'JadwalController@create');
 Route::get('/lihat-jadwal', 'JadwalController@read');
+Route::post('/lihat-jadwal/tambah', 'JadwalController@tambah');
 Route::post('/lihat-jadwal/edit/{id}=update', 'JadwalController@update');
 Route::get('/lihat-jadwal/edit/{id}', 'JadwalController@redirect_update');
-Route::get('/lihat-jadwal/delete/{id}', 'JadwalController@delete');
+Route::get('/lihat-jadwal/delete/{id}', 'JadwalContro ller@delete');
 Route::get('/lihat-jadwal/cari', 'JadwalController@cari');
 //* SIDEBAR SERAH TERIMA    
 Route::get('/serah-terima/create', function () {
     $serah = DB::table('serah_terima_inventaris')->get();
     $pic = DB::table('jadwal')->get();
-    return view('TambahSerah', ['lihatpic' => $pic]);
+    return view('TambahSerah', ['lihatdata' => $pic]);
 });
 Route::get('/serah-terima/read', function () {
     $serah = DB::table('serah_terima_inventaris')->get();
@@ -114,10 +119,13 @@ Route::get('/serah-terima/read', function () {
 });
 route::post('/serah-terima/create', 'SerahTerimaController@create');
 Route::get('/serah-terima', 'SerahTerimaController@read');
+Route::get('/jadwal', 'SerahTerimaController@index');
+Route::get('/serah-terima/fetch', 'SerahTerimaController@fetch')->name('SerahTerima.fetch');
 Route::post('/serah-terima/edit/{id}=update', 'SerahTerimaController@update');
 Route::get('/serah-terima/edit/{id}', 'SerahTerimaControler@redirect_update');
 Route::get('/serah-terima/delete/{id}', 'SerahTerimaController@delete');
 Route::get('/serah-terima/cari', 'SerahTerimaController@cari');
+Route::get('/jadwal/{id}', 'SerahTerimaController@getjadwal');
 // *END SIDEBAR
 
 //*END SIDEBAR 
@@ -125,13 +133,7 @@ Route::get('/serah-terima/cari', 'SerahTerimaController@cari');
 Route::post('/status-terakhir/create', 'StatusController@create');
 Route::get('/status-terakhir', 'StatusController@read');
 //*END SIDEBAR status
-Route::get('/keempat', function () {
-    return view('monitoring_koni');
-});
-Route::get('/edit', function () {
-    return view('edit');
-});
+
 
 Auth::routes();
-
 Route::get('/AuthCheck', 'LoginController@index')->name('AuthCheck');
