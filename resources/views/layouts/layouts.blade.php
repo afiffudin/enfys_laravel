@@ -19,9 +19,6 @@
     <title>Data Master</title>
 
 
-
-
-
     <!-- Bootstrap CSS -->
 
 

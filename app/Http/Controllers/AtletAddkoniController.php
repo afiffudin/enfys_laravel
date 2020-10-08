@@ -10,8 +10,13 @@ class AtletAddkoniController extends Controller
 {
     public function create(Request $request)
     {
+        DB::table('users')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
         DB::table('data_master_nomer_ketua_koni')->insert([
-            'Nama' => $request->nama,
+            'Nama' => $request->Nama,
             'Nomer_Telepon' => $request->Nomer_Telepon
         ]);
         return redirect('/ketuakoni');

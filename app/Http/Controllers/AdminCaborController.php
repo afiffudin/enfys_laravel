@@ -10,6 +10,12 @@ class AdminCaborController extends Controller
     // CREATE
     public function create(Request $r)
     {
+        DB::table('users')->insert([
+            'name' => $r->name,
+            'email' => $r->email,
+            'password' => $r->password
+
+        ]);
         $cabor_c = DB::table('admin_cabor')->insert([
             'Nama' => $r->Nama,
             'nama_cabor' => $r->nama_cabor,

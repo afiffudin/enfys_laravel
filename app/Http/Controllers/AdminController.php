@@ -3,17 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\User;
+use App\Admin;
+use Illuminate\Support\Carbon;
+use Session;
+use Illuminate\Support\Facades\Redirect;
+use Auth;
+use DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        return view('pages.admin.index');
+    }
+
     // CREATE
     public function create(Request $r)
     {
+        
+
         $pict = $r->file('foto_ktp');
         $path = public_path('/public/picture/');
         $img = rand() . "." . $pict->getClientOriginalExtension();
-        $pict->move($path, $img);
+        $pict->move($path, $img);   
+        DB::table('users')->insert([
+            'name' => $r->name,
+            'email' => $r->email,
+            'password' => $r->password
+
+        ]);
         DB::table('data_master_atlet')->insert([
             'Nama' => $r->nama,
             'Nomer_Telepon' => $r->Nomer_Telepon,

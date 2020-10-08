@@ -39,7 +39,6 @@ $_SESSION['pesan'] = '';
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ID Inventaris</th>
                     <th>PIC</th>
                     <th>list atlit</th>
                     <th>Tiket Pesawat</th>
@@ -56,8 +55,7 @@ $_SESSION['pesan'] = '';
             <tbody>
                 @foreach($lihatjadwal as $key=>$row)
                 <tr>
-                    <td>{{$row->id_jadwal}}</td>
-                    <td>{{$row->id_inventaris}}</td>
+                    <td>{{$row->id}}</td>
                     <td>{{$row->PIC}}</td>
                     <td>{{$row->Nama}}</td>
                     <td><img class="Tiket_Pesawat" src="{{ asset('public/foto/'.$row->Tiket_Pesawat) }}" /></td>
@@ -69,19 +67,19 @@ $_SESSION['pesan'] = '';
                     <td>{{$row->Tempat_Pertandingan}}</td>
                     <td>{{$row->Inventaris_mobil}}</td>
                     <td>
-                        <a href="{{url ('/lihat-jadwal/edit/'.$row->id_jadwal)}}">
-                            <button type="edit" class="btn btn-primary btn-md dt-edit">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <a href="{{url ('/lihat-jadwal/edit/'.$row->id)}}">
+                            <button type="edit" class="btn btn-primary btn-xs dt-edit">
+                                <span class="fa fa-pencil" aria-hidden="true"></span>
                             </button>
                         </a>
                         <a href="{{url('/lihat-jadwal/add/')}}">
-                            <button type="tambah" class="btn btn-primary btn-md dt-edit">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            <button type="tambah" class="btn btn-primary btn-xs dt-edit">
+                                <span class="fa fa-plus" aria-hidden="true"></span>
                             </button>
                         </a>
-                        <a href="{{url ('/lihat-jadwal/delete/'.$row->id_jadwal)}}">
-                            <button type="delete" class="btn btn-danger btn-md dt-delete">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <a href="{{url('/lihat-jadwal/delete/'.$row->id)}}">
+                            <button type="delete" class="btn btn-danger btn-xs dt-delete">
+                                <span class="fa fa-remove" aria-hidden="true"></span>
                             </button>
                         </a>
                     </td>

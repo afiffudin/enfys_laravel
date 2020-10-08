@@ -1,107 +1,149 @@
+@extends('layouts.app')
 @section('isimain')
-<div class="container">
-    <style>
-        .foto_ktp {
-            max-width: 100px;
-            height: auto;
-            border-radius: 10px;
-        }
-    </style>
+<style>
+    .foto_ktp {
+        max-width: 100px;
+        height: auto;
+        border-radius: 10px;
+    }
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-
-    <body>
-        <Datatable>
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-            <!- Bootstrap ->
-                <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
-                <!- Font Awesome ->
-                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-                    {{ csrf_field() }}
+    .pagination li {
+        float: left;
+        list-style-type: none;
+        margin: 5px;
+    }
+</style>
+<section class="content">
+    <h2 align="center" style="margin: 30px;"> TAMBAH ATLET</h2>
+    <form action="{{url('/Data-Atlet/create')}}" method="post" enctype="multipart/form-data">
+        <form class="form-data" id="form-data" action="{{url('/Data-Atlet/create')}}" method="post">
+            {{ csrf_field() }}
+            <div class="row">
+                <div class="col-sm-9">
                     <div class="form-group">
-                        <form action="{{url('/Data-Atlet/create')}}" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <label>Nama</label>
-                                <input type="text" class="form-control" name="nama" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Nomer_Telepon</label>
-                                <input type="number" name="Nomer_Telepon" oninput="maxNomer(this)" maxlength="12" min="4" class="form-control" placeholder="MAX number 12 .." required />
-                            </div>
-                            <div class="form-group">
-                                <label>Jenis_kelamin</label>
-                                <select name="jenis_kelamin" id="Jenis_kelamin" class="form-control" required="true">
-                                    <option value=""></option>
-                                    <option value="L">Laki-Laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>foto_ktp</label>
-                                <img id="foto_show" class="foto_ktp" />
-                                <input name="foto_ktp" type="file" id="foto_ktp" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>nomer_ktp</label>
-                                <input name="nomer_ktp" type="number" id="nomer_ktp" oninput="maxKTP(this)" maxlength="17" min="17" class="form-control" placeholder="MAX number 17 .." required>
-                            </div>
-                            <div class="form-group">
-                                <label>Alamat</label>
-                                <textarea name="alamat" id="Alamat" class="form-control" required="true"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Cabor</label>
-                                <select name="nama_cabor" class="form-control">
-                                    <option value="">- Pilih Cabor -</option>
-                                    @foreach ($cabor as $cbr)
-                                    <option value="{{$cbr->nama_cabor}}">{{$cbr->nama_cabor}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>email</label>
-                                <textarea name="email" id="email" class="form-control" required="true"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
-                                <input type="submit" class="btn btn-success" value="Add">
-                            </div>
-                        </form>
-                        <script>
-                            function readURL(input) {
-                                if (input.files && input.files[0]) {
-                                    var reader = new FileReader();
+                        <label>Nama</label>
+                        <input type="text" class="form-control input-lg dynamic" data-dependent="nama" name="nama" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>Nomer Telepon</label>
+                        <input type="number" name="Nomer_Telepon" oninput="maxNomer(this)" maxlength="12" min="4" class="form-control input-lg dynamic" data-dependent="Nomer_Telepon" placeholder="MAX number 12 .." required />
+                        <p class="text-danger" id="err_Nomer_Telepon"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>Jenis kelamin</label>
+                        <select name="jenis_kelamin" id="Jenis_kelamin" class="form-control input-lg dynamic" data-dependent="Jenis_kelamin" required="true">
+                            <option value=""></option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>foto ktp</label>
+                        <img id="foto_show" class="foto_ktp" />
+                        <input name="foto_ktp" type="file" id="foto_ktp" class="form-control input-lg dynamic" data-dependent="foto_ktp">
+                        <p class="text-danger" id="err_foto_ktp"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>nomer ktp</label>
+                        <input name="nomer_ktp" type="number" id="nomer_ktp" oninput="maxKTP(this)" maxlength="17" min="17" class="form-control input-lg dynamic" data-dependent="nomer_ktp" placeholder="MAX number 17 .." required>
+                        <p class="text-danger" id="err_nomer_ktp"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div Class="form-group">
+                        <label>Alamat</label>
+                        <textarea name="alamat" id="Alamat" class="form-control input-lg dynamic" data-dependent="Alamat" required=" true"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>Cabor</label>
+                        <select name="nama_cabor" class="form-control input-lg dynamic" data-dependent="nama_cabor">
+                            <option value="">- Pilih Cabor -</option>
+                            @foreach ($cabor as $cbr)
+                            <option value="{{$cbr->nama_cabor}}">{{$cbr->nama_cabor}}</option>
+                            @endforeach
+                        </select></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>name</label>
+                        <textarea name="name" id="name" class="form-control input-lg dynamic" data-dependent="name" required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>email</label>
+                        <textarea name="email" id="email" class="form-control input-lg dynamic" data-dependent="email" required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>password</label>
+                        <textarea name="password" id="password" class="form-control input-lg dynamic" data-dependent="email" required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
+                        <button type="submit" name="simpan" id="simpan" class="btn btn-primary">
+                            <i class="fa fa-save"></i> Simpan
+                        </button>
+                    </div>
+                    <script>
+                        function readURL(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
 
-                                    reader.onload = function(e) {
-                                        $('#foto_show').attr('src', e.target.result);
-                                    }
-
-                                    reader.readAsDataURL(input.files[0]);
+                                reader.onload = function(e) {
+                                    $('#foto_show').attr('src', e.target.result);
                                 }
-                            }
 
-                            $("#foto_ktp").change(function() {
-                                readURL(this);
-                            });
-                        </script>
-                        <script>
-                            function maxNomer(object) {
-                                if (object.value.length > object.maxLength)
-                                    object.value = object.value.slice(0, object.maxLength)
+                                reader.readAsDataURL(input.files[0]);
                             }
+                        }
 
-                            function maxKTP(object) {
-                                if (object.value.length > object.maxLength)
-                                    object.value = object.value.slice(0, object.maxLength)
-                            }
-                        </script>
+                        $("#foto_ktp").change(function() {
+                            readURL(this);
+                        });
+                    </script>
+                    <script>
+                        function maxNomer(object) {
+                            if (object.value.length > object.maxLength)
+                                object.value = object.value.slice(0, object.maxLength)
+                        }
+
+                        function maxKTP(object) {
+                            if (object.value.length > object.maxLength)
+                                object.value = object.value.slice(0, object.maxLength)
+                        }
+                    </script>
+                    @endsection

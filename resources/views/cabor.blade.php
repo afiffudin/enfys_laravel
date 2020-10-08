@@ -26,7 +26,6 @@
         <!-- ini untuk isi content atlet nya , sampai endsection ya -->
         <h2 align="center" style="margin: 30px;"> LIHAT CABOR</h2>
         <a href="#caborEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i><span>Add New Data </span></a>
-        <a href="#deleteEmployeeModal" class="btn btn-warning" data-toggle="modal"><i class="fa fa-filter">&#xE15C;</i> <span>Filter Data By column</span></a>
         <div>
             <style type="text/css">
                 .pagination li {
@@ -52,15 +51,15 @@
                         </thead>
                         @foreach($cabor as $key=>$row)
                         <tr>
-                            <td>{{$row->id}}</td>
+                            <td>{{$row->id_cabor}}</td>
                             <td>{{$row->nama_cabor}}</td>
                             <th>
-                                <a href="{{url ('/Data-cabor/edit/'.$row->id)}}">
+                                <a href="{{url ('/Data-cabor/edit/'.$row->id_cabor)}}">
                                     <button type="update" class="btn btn-primary btn-md dt-edit">
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     </button>
                                 </a>
-                                <a href="{{url('/Data-cabor/delete/'.$row->id)}}">
+                                <a href="{{url('/Data-cabor/delete/'.$row->id_cabor)}}">
                                     <button type="delete" class="btn btn-danger btn-md dt-delete">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </button>

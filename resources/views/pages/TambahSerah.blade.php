@@ -20,11 +20,11 @@
                         <div class="form-group">
                             <label>Tanggal Keberangkatan</label>
                             <!--select id="selectbox2">!-->
-                            <select id='Tanggal_keberangkatan' name='Tanggal_keberangkatan' class="form-control input-lg dynamic" data-dependent="Tanggal_keberangkatan">
+                            <select id='sel_Tanggal' name='Tanggal_keberangkatan' class="form-control input-lg dynamic" data-dependent="Tanggal_keberangkatan">
                                 <option value='0'>-- Select Tanggal --</option>
                                 <!-- Read Departments -->
                                 @foreach($lihatdata as $inventaris_mobil)
-                                <option value="{{$inventaris_mobil->Inventaris_mobil}}">{{$inventaris_mobil->Tanggal_keberangkatan}}</option>
+                                <option value="{{ $inventaris_mobil->Tanggal_keberangkatan }}">{{ $inventaris_mobil->Tanggal_keberangkatan }}</option>
                                 @endforeach
                             </select>
                             </input>
@@ -32,17 +32,20 @@
                         <div class="form-group">
                             <label>Pilh Inventaris</label>
                             <!---select id="selectbox1">!-->
-                            <select id='Inventaris_mobil' name='Inventaris_mobil' class="form-control input-lg dynamic" data-dependent="Inventaris_mobil">
+                            <select id='sel_inv' name='Inventaris_mobil' class="form-control input-lg dynamic" data-dependent="Inventaris_mobil">
                                 <option value='0'>-- Select inv --</option>
+                                @foreach($lihatdata as $Inventaris_mobil)
+                                <option value='{{$Inventaris_mobil->Inventaris_mobil}}'>{{$Inventaris_mobil->Inventaris_mobil}}</option>
+                                @endforeach
                             </select> </div><!-- Script -->
                         <script type='text/javascript'>
                             $(document).ready(function() {
                                 // Department Change
-                                $('#Tanggal_keberangkatan').change(function() {
+                                $('#sel_Tanggal').change(function() {
                                     // Department id
                                     var id_inventaris = $(this).val();
                                     // Empty the dropdown
-                                    $('#Inventaris_mobil').find('option').not(':first').remove();
+                                    $('#sel_inv').find('option').not(':first').remove();
                                     // AJAX request 
                                     $.ajaxSetup({
                                         headers: {
@@ -64,7 +67,7 @@
                                                     var Tanggal_keberangkatan = response['data'][i].Tanggal_keberangkatan;
                                                     var Inventaris_mobil = response['data'][i].Inventaris_mobil;
                                                     var option = "<option value='" + Tanggal_keberangkatan + "'>" + Inventaris_mobil + "</option>";
-                                                    $("#Inventaris_mobil").append(option);
+                                                    $("#sel_inv").append(option);
                                                 }
                                             }
 

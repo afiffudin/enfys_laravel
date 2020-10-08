@@ -12,13 +12,15 @@ class JadwalController extends Controller
     public function create(Request $r)
     // CREATE
     {
+        
         $pict = $r->file('Tiket_Pesawat');
         $path = public_path('/public/foto/');
         $img = rand() . "." . $pict->getClientOriginalExtension();
         $pict->move($path, $img);
         DB::table('jadwal')->insert([
-            'id_inventaris' => $r->id_inventaris,
+            'id' => $r->id,
             'Nama' => $r->Nama,
+            'nama_cabor' => $r->nama_cabor,
             'Tiket_Pesawat' => $img,
             'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
             'Tanggal_kepulangan' => $r->Tanggal_kepulangan,
@@ -39,9 +41,9 @@ class JadwalController extends Controller
         return view('lihatjadwal', ['lihatjadwal' => $jadwal_r]);
     }
     // UPDATE
-    public function redirect_update($id_jadwal)
+    public function redirect_update($id)
     {
-        $atlet_u = DB::table('jadwal')->get()->where("id_jadwal", $id_jadwal);
+        $atlet_u = DB::table('jadwal')->get()->where("id", $id);
         $atlet = DB::table('data_master_atlet')->get();
         return view('pages/editjadwal', ['lihatjadwal' => $atlet_u, 'atlet' => $atlet]);
     }
@@ -50,6 +52,7 @@ class JadwalController extends Controller
         $this->validate($r, [
             'PIC' => 'required',
             'Nama' => 'required',
+            'nama_cabor' => 'required',
             'Tiket_Pesawat' => 'required',
             'Tanggal_keberangkatan' => 'required',
             'Tanggal_kepulangan' => 'required',
@@ -80,10 +83,10 @@ class JadwalController extends Controller
         return redirect('/lihat-jadwal');
     }
     // DELETE
-    public function delete($id_jadwal)
+    public function delete($id)
     {
-        DB::table('jadwal')->where('id_jadwal', $id_jadwal)->delete();
-        return redirect('/lihat-jadwal');
+        DB::table('jadwal')->where('id', $id)->delete();
+        return back();
     }
     public function tambah(Request $r)
     {

@@ -5,6 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ATLET | Dashboard</title>
+  <tr>
+    <th>ID</th>
+    <th>Nama PT</th>
+    <th>Address</th>
+  </tr>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 

@@ -16,27 +16,32 @@ class SerahTerimaController extends Controller
             ->get();
         return view('TambahSerah')->with("jadwalData", $jadwalData);
     }
-    public function getjadwal($Inventaris_mobilid = 0)
+    public function getjadwal(Request $request)
     {
         //fetch jadwal by Inventaris_mobilid
-        $empData["data"] = DB::table('serah_terima_inventaris')
-            ->join('jadwal', 'jadwal.Tanggal_keberangkatan', '=', 'serah_terima_inventaris.Tanggal_keberangkatan')
-            ->select('serah_terima_inventaris.Tanggal_keberangkatan', 'jadwal.Inventaris_mobil')->get();
+        $data["data"] = DB::table('jadwal')
+            ->where('Tanggal_keberangkatan', $request->id)
+            ->get();
 
-        return response()->json($empData);
+        return response()->json($data);
     }
 
     // CREATE
     public function create(Request $r)
     {
+        // dd($r->all());
+        $jadwal = DB::table('jadwal')->where('id', $r->id)->first();
+
+
         DB::table('serah_terima_inventaris')->insert([
             'stnk' => $r->stnk,
-            'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
-            'Inventaris_mobil' => $r->Inventaris_mobil,
+            'Tanggal_keberangkatan' => $jadwal->Tanggal_keberangkatan,
+            'Inventaris_mobil' => $jadwal->Inventaris_mobil,
+            'PIC' => $jadwal->PIC,
             'diterima_oleh' => $r->diterima_oleh
 
         ]);
-        return back();
+        return redirect()->back();
     }
     // READ 
     public function read()
@@ -48,7 +53,8 @@ class SerahTerimaController extends Controller
     public function redirect_update($id)
     {
         $atlet_u = DB::table('serah_terima_inventaris')->get()->where("id", "PIC", $id);
-        return view('/pages/editserahterima', ['serah-terima' => $atlet_u]);
+        $atlet = DB::table('jadwal')->get();
+        return view('.pages.editserahterima', ['lihatserah' => $atlet_u, 'editserah' => $atlet]);
     }
     public function update(Request $r)
     {
@@ -63,7 +69,8 @@ class SerahTerimaController extends Controller
             'stnk' => $r->stnk,
             'Tanggal_keberankatan' => $r->Tanggal_keberangkatan,
             'Inventaris_mobil' => $r->Inventaris_mobil,
-            'PIC' => $r->PIC
+            'PIC' => $r->PIC,
+            'diterima_oleh' => $r->diterima_oleh
         ]);
         return redirect('/serah-terima');
     }
@@ -71,14 +78,14 @@ class SerahTerimaController extends Controller
     public function delete($id)
     {
         DB::table('serah_terima_inventaris')->where('id', $id)->delete();
-        return back();
+        return redirect()->back()->with('message', 'Data Di hapus');
     }
 
     public function cari(Request $request)
     {
         $cari = $request->cari;
         $cabor = DB::table('serah_terima_inventaris')
-            ->where('id', 'like', "%" . $cari . "%")
+            ->where('nama', 'like', "%" . $cari . "%")
             ->paginate();
         return view('TambahSerah', ['cabor' => $cabor]);
     }

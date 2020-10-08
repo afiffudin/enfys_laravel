@@ -1,23 +1,42 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @include('layouts.app')
+    @yield('style')
+</head>
 
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
+<body class="hold-transition skin-red-light sidebar-mini">
+    <div class="wrapper">
 
-                    You are logged in!
-                </div>
-            </div>
+        @include('layouts.header')
+        <!-- Left side column. contains the logo and sidebar -->
+        @include('layouts.sidebar')
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            @yield('list')
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Small boxes (Stat box) -->
+                @yield('body')
+            </section>
+            <!-- /.content -->
         </div>
+        <!-- /.content-wrapper -->
+        @include('layouts.footer')
+        <div class="control-sidebar-bg"></div>
     </div>
-</div>
-@endsection
+    <!-- ./wrapper -->
+
+    <!-- jQuery 3 -->
+    @include('layouts.js')
+    @yield('js')
+
+</body>
+
+</html>

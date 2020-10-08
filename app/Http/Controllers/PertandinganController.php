@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,28 +10,57 @@ class PertandinganController extends Controller
 {
     // CREATE
     public function create(Request $r)
+    // CREATE
     {
-        $cabor_c = DB::table('jadwal')->insert([
+        // dd($r->all());
+        $pict = $r->file('Tiket_Pesawat');
+        $path = public_path('/public/foto/');
+        $img = rand() . "." . $pict->getClientOriginalExtension();
+        $pict->move($path, $img);
+        jadwal::create([
+            'id_cabor' => $request->data_cabor
+        ]);
+        DB::table('jadwal')->insert([
+            'id' => $r->id,
             'PIC' => $r->PIC,
+            'Nama' => $r->Nama,
+            'Tiket_Pesawat' => $img,
             'Tanggal_keberangkatan' => $r->Tanggal_keberangkatan,
             'Tanggal_kepulangan' => $r->Tanggal_kepulangan,
             'Penginapan' => $r->Penginapan,
+            'no_kamar' => $r->no_kamar,
+            'no_booking' => $r->no_booking,
             'Tempat_Pertandingan' => $r->Tempat_Pertandingan,
             'Inventaris_mobil' => $r->Inventaris_mobil
 
         ]);
-        return back();
+        return redirect('/lihat-jadwal');
+    }
+
+    public function store(Request $request)
+    {
+        $validator =  Validator::make($r->all(), [
+            'Inventaris_mobil' => 'required|unique:pertandingan|max:15',
+            'Tanggal_keberangkatan' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/jadwal-pertandingan')
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
     // READ
     public function read()
     {
         $jadwal_r = DB::table('jadwal')->get();
-        return view('jadwal', ['jadwal' => $jadwal_r]);
+        $atlet_u = DB::table('data_master_atlet')->get();
+        $cabor = DB::table('data_cabor')->get();
+        return view('jadwal', ['jadwal' => $jadwal_r, 'atlet' => $atlet_u, 'cabor' => $cabor]);
     }
     // UPDATE
     public function redirect_update($id)
     {
-        $atlet_u = DB::table('cabor')->get()->where("id", $id);
+        $atlet_u = DB::table('data_cabor')->get()->where("id", $id);
         return view('cabor', ['cabor' => $atlet_u]);
     }
     public function update(Request $r)
@@ -73,7 +103,7 @@ class PertandinganController extends Controller
     public function cari(Request $request)
     {
         $cari = $request->cari;
-        $cabor = DB::table('cabor')
+        $cabor = DB::table('data_cabor')
             ->where('id', 'like', "%" . $cari . "%")
             ->paginate();
         return view('cabor', ['cabor' => $cabor]);
