@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label>Nama</label>
+                        <label>Nama Admin Cabor</label>
                         <input type="hidden" name="id" id="id">
                         <input type="text" name="Nama" id="Nama" class="form-control" required="true">
                         <p class="text-danger" id="eror_Nama"></p>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@foreach($lihatjadwal as $row)
+    @foreach($lihatjadwal as $row)
 @section('isimain')
 <style>
     .Tiket_Pesawat {
@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="Tiket_Pesawat">Tiket Pesawat</label><br>
+                        <label for="Tiket_Pesawat">Tiket_Pesawat</label><br>
                         <img id="foto_show" class="Tiket_Pesawat" src="{{ asset('/public/foto/'.$row->Tiket_Pesawat) }}" />
                         <input name="Tiket_Pesawat" type="file" id="Tiket_Pesawat" class="form-control input-lg dynamic" data-dependent="Tiket_Pesawat" required>
                     </div>
@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="Tanggal_keberangkatan">Tanggal Keberangkatan</label>
+                        <label for="Tanggal_keberangkatan">Tanggal_keberangkatan</label>
                         <input type="date" name="Tanggal_keberangkatan" id="Tanggal_keberangkatan" class="form-control input-lg dynamic" data-dependent="Tanggal_keberangkatan" value="{{$row->Tanggal_keberangkatan}}"></input>
                         <p class="text-danger" id="err_Tanggal_keberangkatan"></p>
                     </div>
@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="Tanggal_kepulangan">Tanggal Kepulangan </label>
+                        <label for="Tanggal_kepulangan">Tanggal_kepulangan </label>
                         <input type="date" name="Tanggal_kepulangan" textarea class="form-control input-lg dynamic" data-dependent="Tanggal_kepulangan" value="{{$row->Tanggal_kepulangan}}"></input>
                         <p class="text-danger" id="err_Tanggal_kepulangan"></p>
                     </div>
@@ -79,7 +79,7 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="no_kamar">NO.Kamar </label>
+                        <label for="no_kamar">no_kamar </label>
                         <input type="text" name="no_kamar" class="form-control input-lg dynamic" data-dependent="no_kamar" value="{{$row->no_kamar}}"><br>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="no_booking">NO.Booking </label>
+                        <label for="no_booking">no_booking </label>
                         <input type="text" name="no_booking" class="form-control input-lg dynamic" data-dependent="no_booking" value="{{$row->no_booking}}"><br>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="Tempat_Pertandingan">Tempat Pertandingan </label>
+                        <label for="Tempat_Pertandingan">Tempat_Pertandingan </label>
                         <input type="text" name="Tempat_Pertandingan" class="form-control input-lg dynamic" data-dependent="Tempat_Pertandingan" value="{{$row->Tempat_Pertandingan}}"><br>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="Inventaris_mobil">Inventaris Mobil </label>
+                        <label for="Inventaris_mobil">Inventaris_mobil </label>
                         <input type="text" name="Inventaris_mobil" class="form-control input-lg dynamic" data-dependent="Inventaris_mobil" value="{{$row->Inventaris_mobil}}"><br>
                     </div>
                 </div>

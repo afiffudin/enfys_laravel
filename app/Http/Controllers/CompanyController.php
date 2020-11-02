@@ -76,3 +76,4 @@ class CompanyController extends Controller
         return view('atlet', ['atlet' => $atlet]);
     }
 }
+//Catatan : Semua Alur Ada Di routes,Jadi sering2 liat di routes nya ya

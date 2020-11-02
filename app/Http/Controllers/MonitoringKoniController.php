@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class MonitoringKoniController extends Controller
 {
+    //function creat data monitoring koni
     public function create(Request $r)
     {
         DB::table('monitoring_koni')->insert([
@@ -18,6 +19,7 @@ class MonitoringKoniController extends Controller
         ]);
         return redirect('/Data-monitoring');
     }
+    //read data Monitoring Koni
     public function read()
     {
         $monitoring_r = DB::table('monitoring')->get();
@@ -43,10 +45,11 @@ class MonitoringKoniController extends Controller
 
         return redirect('/Data-monitoring');
     }
-    // DELETE
+    // Delete data monitoring
     public function delete($id)
     {
         DB::table('monitoring')->where('id', $id)->delete();
         return redirect('/Data-monitoring');
     }
 }
+//Catatan : Semua Alur ada di routes,jadi sering2 liat routes ya.

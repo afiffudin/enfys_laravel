@@ -23,7 +23,7 @@ class User extends Controller
     {
         return view('login');
     }
-
+    //Ini function buat login post
     public function loginPost(Request $request)
     {
 
@@ -50,7 +50,6 @@ class User extends Controller
         Session::flush();
         return redirect('login')->with('alert', 'Kamu sudah logout');
     }
-
     public function register(Request $request)
     {
         return view('register');

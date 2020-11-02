@@ -4,9 +4,9 @@
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>A</b>LT</span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>TEMPLATE</b></span>
+    <span class="logo-lg"><b>PT.ENFYS</b></span>
   </a>
-  <!-- Header Navbar: style can be found in header.less -->
+  <!-- Header Navbar: style can be found in header.less --> 
   <nav class="navbar navbar-static-top">
     <!-- Sidebar toggle button-->
     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -109,13 +109,13 @@
             <li class="user-body">
               <div class="row">
                 <div class="col-xs-4 text-center">
-                  <a href="#">Followers</a>
+                  <!-- <a href="#">Followers</a> -->
                 </div>
                 <div class="col-xs-4 text-center">
-                  <a href="#">Sales</a>
+                  <!-- <a href="#"></a> -->
                 </div>
                 <div class="col-xs-4 text-center">
-                  <a href="#">Friends</a>
+                  <!-- <a href="#"x></a> -->
                 </div>
               </div>
               <!-- /.row -->
@@ -123,7 +123,8 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+
+                <a href="{{ url('/update-profile/ubah/'.Auth::id() )}}" class="btn btn-default btn-flat">Update Profile</a>
               </div>
               <div class="pull-right">
                 <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>

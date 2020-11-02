@@ -10,15 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class SerahTerimaController extends Controller
 {
+    //index data Inventaris mobil(plat nomer)
     public function index()
     {
         $jadwalData['data'] = jadwal::orderby("Inventaris_mobil", "asc")
             ->get();
         return view('TambahSerah')->with("jadwalData", $jadwalData);
     }
+    //function getjadwal ngambil tanggal keberangkatan
     public function getjadwal(Request $request)
     {
-        //fetch jadwal by Inventaris_mobilid
+        //fetch jadwal by tgl_keberangkatan
         $data["data"] = DB::table('jadwal')
             ->where('Tanggal_keberangkatan', $request->id)
             ->get();
@@ -26,13 +28,10 @@ class SerahTerimaController extends Controller
         return response()->json($data);
     }
 
-    // CREATE
+    // Create data serah terima inventaris
     public function create(Request $r)
     {
-        // dd($r->all());
         $jadwal = DB::table('jadwal')->where('id', $r->id)->first();
-
-
         DB::table('serah_terima_inventaris')->insert([
             'stnk' => $r->stnk,
             'Tanggal_keberangkatan' => $jadwal->Tanggal_keberangkatan,
@@ -43,18 +42,18 @@ class SerahTerimaController extends Controller
         ]);
         return redirect()->back();
     }
-    // READ 
+    // Read Data Serah Terima ke view Tambah Serah
     public function read()
     {
         $jadwal_r = DB::table('serah_terima_inventaris')->get();
         return view('TambahSerah', ['jadwal' => $jadwal_r]);
     }
-    // UPDATE
+    // UPDATE table serah_terima_inventaris dan tabel jadwal ke view pages/editserahterima
     public function redirect_update($id)
     {
         $atlet_u = DB::table('serah_terima_inventaris')->get()->where("id", "PIC", $id);
         $atlet = DB::table('jadwal')->get();
-        return view('.pages.editserahterima', ['lihatserah' => $atlet_u, 'editserah' => $atlet]);
+        return view('pages.editserahterima', ['lihatserah' => $atlet_u, 'editserah' => $atlet]);
     }
     public function update(Request $r)
     {
@@ -74,13 +73,13 @@ class SerahTerimaController extends Controller
         ]);
         return redirect('/serah-terima');
     }
-    // DELETE
+    // Delete Serah terima inventaris
     public function delete($id)
     {
         DB::table('serah_terima_inventaris')->where('id', $id)->delete();
         return redirect()->back()->with('message', 'Data Di hapus');
     }
-
+    //cari id dan nama serah terima
     public function cari(Request $request)
     {
         $cari = $request->cari;
@@ -90,3 +89,4 @@ class SerahTerimaController extends Controller
         return view('TambahSerah', ['cabor' => $cabor]);
     }
 }
+//Catatan : Semua alur ada di routes,jadi sering2 liat di routes ya

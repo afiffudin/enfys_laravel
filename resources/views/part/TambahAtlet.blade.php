@@ -78,10 +78,10 @@
                 <div class="col-sm-9">
                     <div class="form-group">
                         <label>Cabor</label>
-                        <select name="nama_cabor" class="form-control input-lg dynamic" data-dependent="nama_cabor">
+                        <select name="id_cabor" class="form-control input-lg dynamic" data-dependent="id_cabor">
                             <option value="">- Pilih Cabor -</option>
                             @foreach ($cabor as $cbr)
-                            <option value="{{$cbr->nama_cabor}}">{{$cbr->nama_cabor}}</option>
+                            <option value="{{$cbr->id_cabor}}">{{$cbr->nama_cabor}}</option>
                             @endforeach
                         </select></div>
                 </div>
@@ -89,8 +89,21 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label>name</label>
-                        <textarea name="name" id="name" class="form-control input-lg dynamic" data-dependent="name" required="true"></textarea>
+                        <input name="name" type="hidden" value="Atlit"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <input type="hidden" name="id" id="id">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <input name="role_id" type="hidden" value="4"></input>
                     </div>
                 </div>
             </div>
@@ -106,7 +119,11 @@
                 <div class="col-sm-9">
                     <div class="form-group">
                         <label>password</label>
-                        <textarea name="password" id="password" class="form-control input-lg dynamic" data-dependent="email" required="true"></textarea>
+                        <input type="password" name="password" id="myInput" class="form-control input-lg dynamic" data-dependent="password" required="true"></input>
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <input type="checkbox" onclick="myFunction()">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,6 +161,16 @@
                         function maxKTP(object) {
                             if (object.value.length > object.maxLength)
                                 object.value = object.value.slice(0, object.maxLength)
+                        }
+                    </script>
+                    <script>
+                        function myFunction() {
+                            var x = document.getElementById("myInput");
+                            if (x.type === "password") {
+                                x.type = "text";
+                            } else {
+                                x.type = "password";
+                            }
                         }
                     </script>
                     @endsection

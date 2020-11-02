@@ -1,7 +1,9 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 use App\Admin;
@@ -18,45 +20,57 @@ class AdminController extends Controller
     {
         return view('pages.admin.index');
     }
-
-    // CREATE
+    //join data_cabor sama data_master_atlet ngambil id_cabor sama nama_cabor di view/part/tambah_atlet
+    public function caborjoin(Request $r)
+    {
+        $data['data_cabor'] = DB::table('data_cabor')
+            ->join('data_master_atlet', 'data_cabor.id_cabor', '=', 'data_master_atlet.id_cabor')
+            ->select('data_cabor.*', 'data_master_atlet.id_cabor', 'data_cabor.nama_cabor')
+            ->get();
+        return view('part.TambahAtlet', ['cabor' => $data]);
+    }
     public function create(Request $r)
     {
-        
-
         $pict = $r->file('foto_ktp');
-        $path = public_path('/public/picture/');
+        $path = public_path('/public/picture/'); ///lokasi file gambar di simpen di public/picture
         $img = rand() . "." . $pict->getClientOriginalExtension();
-        $pict->move($path, $img);   
+        $pict->move($path, $img);
+
         DB::table('users')->insert([
+            'id' => $r->id,
             'name' => $r->name,
             'email' => $r->email,
-            'password' => $r->password
-
+            'password' => Hash::make($r->password),
+            'role_id' => $r->role_id
         ]);
+        // dd(Hash::make($r->password));
+        $cabors = DB::table('data_cabor')->where('id_cabor', $r->id_cabor)->first();
+        if (!$cabors) {
+        }
         DB::table('data_master_atlet')->insert([
+            'id_cabor' => $r->id_cabor,
             'Nama' => $r->nama,
             'Nomer_Telepon' => $r->Nomer_Telepon,
             'Jenis_kelamin' => $r->jenis_kelamin,
             'foto_ktp' => $img,
             'nomer_ktp' => $r->nomer_ktp,
             'Alamat' => $r->alamat,
-            'nama_cabor' => $r->nama_cabor,
+            'nama_cabor' => $cabors->nama_cabor,
             'email' => $r->email
         ]);
         return redirect('/Data-Atlet');
     }
-    // READ
+    //read data master atlet di view atlet
     public function read()
     {
         $atlet_r = DB::table('data_master_atlet')->get();
         return view('atlet', ['atlet' => $atlet_r]);
     }
-    // UPDATE
+    // Update data master atlet,data cabor ke view atletedit
     public function redirect_update($id)
     {
         $atlet_u = DB::table('data_master_atlet')->get()->where("id", $id);
-        $atlet = DB::table('cabor')->get();
+        $atlet = DB::table('data_cabor')->get();
         return view('atletedit', ['atlet' => $atlet_u, 'cabor' => $atlet]);
     }
     public function update(Request $r)
@@ -72,7 +86,7 @@ class AdminController extends Controller
             'email' => 'required'
         ]);
         $pict = $r->file('foto_ktp');
-        $path = public_path('/public/picture/');
+        $path = public_path('/public/picture/'); //lokasi file foto di folder public/picture
         $img = rand() . "." . $pict->getClientOriginalExtension();
         $pict->move($path, $img);
         DB::table('data_master_atlet')->where('id', $r->id)->update([
@@ -87,7 +101,7 @@ class AdminController extends Controller
         ]);
         return redirect('/Data-Atlet');
     }
-    // DELETE
+    // Delete data master atlet
     public function delete($id)
     {
         DB::table('data_master_atlet')->where('id', $id)->delete();
@@ -103,3 +117,6 @@ class AdminController extends Controller
         return view('atlet', ['atlet' => $atlet]);
     }
 }
+///Catatan : Buat Email login Atlet di akun Admin
+///Catatan : Login Menggunakan Auth gk pake session
+///Catatan : Semua alur ada di routes,jadi harus sering2 liat routes nya

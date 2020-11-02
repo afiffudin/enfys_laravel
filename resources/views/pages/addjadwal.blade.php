@@ -22,7 +22,7 @@
     }
 </style>
 <section class="content">
-    <h2 align="center" style="margin: 30px;"> TAMBAH JADWAL PERTANDINGANNN</h2>
+    <h2 align="center" style="margin: 30px;"> TAMBAH JADWAL PERTANDINGAN</h2>
     <form action="{{url('/lihat-jadwal/create')}}" method="post" enctype="multipart/form-data">
         <form class="form-data" id="form-data" action="{{url('/lihat-jadwal/create')}}" method="post">
             {{ csrf_field() }}
@@ -65,9 +65,9 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="Tiket_Pesawat">Tiket Pesawat</label>
-                        <img id="foto_show" class="Tiket_Pesawat" />
+                        <label for="Tiket_Pesawat">Tiket Pesawat<br /></label>
                         <input type="file" name="Tiket_Pesawat" id="Tiket_Pesawat" class="form-control input-lg dynamic" data-dependent="PIC">
+                        <img id="foto_show" class="Tiket_Pesawat" />
                         <p class="text-danger" id="err_Tiket_Pesawat"></p>
                     </div>
                 </div>

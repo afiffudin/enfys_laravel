@@ -55,32 +55,32 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
     }
-
     public function index()
     {
 
         return view('auth.login');
     }
-
+    //login proses pake authtentikasi
     public function loginProses(Request $request)
     {
-
         // dd($request->all());
         $user = User::where('email', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 \Session::put('email', $request->email);
                 \Session::put('level', $user->level);
+                \Session::put('id', $user->id);
+                // dd($request::all());
                 return redirect('/dashboard');
             }
         } else {
             return redirect()->back()->with('message', 'Email salah');
         }
     }
-
     public function logout()
     {
         Auth::logout(); // menghapus session yang aktif
         return redirect('/login');
     }
 }
+///Catatan : Semua Alur ada di routes,jadi sering2 liat di routes ya

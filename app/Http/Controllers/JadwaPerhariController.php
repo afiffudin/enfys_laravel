@@ -9,15 +9,13 @@ use Symfony\Component\Console\Input\Input;
 
 class JadwalPerhariController extends Controller
 {
-    // READ
+    // Read data jadwal di view lihat jadwal
     public function read()
     {
         $jadwal_r = DB::table('jadwal')->get();
         return view('lihatjadwal', ['lihatjadwal' => $jadwal_r]);
     }
-    // UPDATE
-
-
+    //function cari jadwal
     public function cari(Request $request)
     {
         DB::table('users')->whereDate($day);
@@ -28,3 +26,4 @@ class JadwalPerhariController extends Controller
         return view('lihatjadwal', ['jadwal' => $cabor]);
     }
 }
+///Catatan : Semua Alur ada di Routes,jadi sering liat2 ya

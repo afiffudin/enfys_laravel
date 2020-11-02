@@ -15,6 +15,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    ///Catatan : Ini model user pas login   
+    protected $table = "users";
     protected $fillable = [
         'name', 'email', 'password', 'last_login_at', 'last_login_ip'
     ];
@@ -36,12 +38,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    ///Catatan : Ini model Role 
     public function role()
     {
         return $this->belongsTo('App\Role', 'role_id');
     }
-
+    //ini model hash role
     public function hasRole($roles)
     {
         $this->have_role = $this->getUserRole();
@@ -61,9 +63,19 @@ class User extends Authenticatable
     {
         return $this->role()->getResults();
     }
-
+    //Ini model cek user role pada saat login
     private function cekUserRole($role)
     {
         return (strtolower($role) == strtolower($this->have_role->nama)) ? true : false;
+    }
+    //ini model update account di table user
+    public function updateAccount()
+    {
+        $id = Auth::user()->id;
+        $user = Auth::user();
+        $user->name = Request::input('name');
+        $user->email = Request::input('email');
+        $user->save();
+        return view('Admin.updateprofile');
     }
 }

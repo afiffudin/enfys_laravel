@@ -20,14 +20,26 @@
             </div>
             <div class="form-group">
                 <label for="alamat">Password:</label>
-                <input type="password" class="form-control" id="password" name="password"></input>
-            </div>
+                <input type="password" class="form-control" id="myInput" name="password">
+                <input type="checkbox" onclick="myFunction()">Show Password
+            </div></input>
             <div class="form-group">
                 <button type="submit" class="btn btn-md btn-primary">Login</button>
                 <a href="{{url('register')}}" class="btn btn-md btn-warning">Register</a>
             </div>
         </form>
     </div>
-    <!---/.content -->
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+
 </section>
+
 @endsection

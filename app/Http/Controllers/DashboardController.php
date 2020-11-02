@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    //join data cabor dan data master atlet buat ambil id cabor
     public function read()
     {
         $data_cabor = DB::table('data_cabor')
@@ -15,8 +16,4 @@ class DashboardController extends Controller
             ->get();
     }
 }
-    // public function index()
-    // {
-
-    // return view('');
-    // }
+///Catatan : Semua Alur Ada di Routes,Jadi sering2 liat di Routes ya

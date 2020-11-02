@@ -6,9 +6,9 @@
     }
 
     .Tiket_Pesawat {
-        border-radius: 100px;
-        width: 80px;
-        height: 50px;
+        border-radius: 5px;
+        width: 200px;
+        height: 200px;
     }
 
     .a-table1 {
@@ -36,49 +36,26 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row"> -->
-            <!-- <div class="col-sm-9"> -->
-            <!-- <div class="form-group"> -->
-            <!-- <label for="">Pilih id</label> -->
-            <!-- <select name="data_cabor" class="form-control input-lg dynamic" data-dependent="data_cabor"> -->
-            <!-- <option value="id_cabor">- Pilih Id Cabor -</option> -->
-            <!-- </select> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </div> -->
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
                         <label for="Nama">Pilih Atlit</label>
-                        <select name="Nama" class="form-control input-lg dynamic" data-dependent="Nama">
+                        <select name="id_cabor" class="form-control input-lg dynamic" data-dependent="id_cabor">
                             <option value="">- Pilih Atlit -</option>
                             @foreach ($atlet as $cbr)
-                            <option value="{{$cbr->Nama}}">{{$cbr->Nama}}</option>
+                            <option value="{{$cbr->id_cabor}}">{{$cbr->Nama}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
             </div>
-            <!--div class="row">
-                <div class="col-sm-9">
-                    <div class="form-group">
-                        <label for="cabor">Pilih Cabor</label>
-                        <select name="cabor" class="form-control input-lg dynamic" data-dependent="cabor">
-                            <option value="">- Pilih cabor -</option>
-                            @foreach ($cabor as $cbr)
-                            <option value="{{$cbr->nama_cabor}}">{{$cbr->nama_cabor}}</option>
-                            @endforeach 
-                        </select>
-                    </div>
-                </div>
-            </!--div!--->
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="Tiket_Pesawat">Tiket Pesawat</label>
+                        <label for="Tiket_Pesawat">Tiket Pesawat</label><br />
                         <img id="foto_show" class="Tiket_Pesawat" />
-                        <input type="file" name="Tiket_Pesawat" id="Tiket_Pesawat" class="form-control input-lg dynamic" data-dependent="PIC">
                         <p class="text-danger" id="err_Tiket_Pesawat"></p>
+                        <input type="file" name="Tiket_Pesawat" id="Tiket_Pesawat" class="form-control input-lg dynamic" data-dependent="PIC">
                     </div>
                 </div>
             </div>
@@ -151,15 +128,12 @@
                         function readURL(input) {
                             if (input.files && input.files[0]) {
                                 var reader = new FileReader();
-
                                 reader.onload = function(e) {
                                     $('#foto_show').attr('src', e.target.result);
                                 }
-
                                 reader.readAsDataURL(input.files[0]);
                             }
                         }
-
                         $("#Tiket_Pesawat").change(function() {
                             readURL(this);
                         });

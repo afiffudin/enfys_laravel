@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\Input;
 class ListUserController extends Controller
 {
     public function create(Request $r)
-    // CREATE
+    // CREATE   
     {
         DB::table('users')->insert([
             'role_id' => $r->role_id,
@@ -86,3 +86,4 @@ class ListUserController extends Controller
         return view('listuser', ['user' => $user]);
     }
 }
+///Catatan : Semua Alur ada di Routes,jadi sering2 liat routes nya ya.

@@ -51,6 +51,8 @@ class StatusController extends Controller
         return redirect('/Data-admincabor');
     }
 }
+//Catatan : Semua alur ada di routes,jadi sering2 liat routes ya
+
     ///public function cari(Request $request)
     //{
        // $cari = $request->cari;

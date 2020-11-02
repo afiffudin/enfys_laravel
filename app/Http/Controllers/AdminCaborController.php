@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AdminCaborController extends Controller
 {
-    // CREATE
+    // Create user admin baru di tabel user
     public function create(Request $r)
     {
         DB::table('users')->insert([
             'name' => $r->name,
             'email' => $r->email,
-            'password' => $r->password
+            'password' => Hash::make($r->password),
 
         ]);
+        //Insert data admin cabor
         $cabor_c = DB::table('admin_cabor')->insert([
             'Nama' => $r->Nama,
             'nama_cabor' => $r->nama_cabor,
@@ -24,25 +26,25 @@ class AdminCaborController extends Controller
         ]);
         return redirect('Data-admincabor');
     }
-    // READ
+    // match data Admin Cabor dan data_cabor
     public function match()
     {
         $cabor_r = DB::table('admin_cabor')->get();
-        $cabor = DB::table('cabor')->get();
+        $cabor = DB::table('data_cabor')->get();
         dd($cabor);
         return view('admincabor', ['admincabor' => $cabor_r, 'cabor' => $cabor]);
     }
-    // READ
+    // Read Data Cabor kew view admincabor
     public function read()
     {
         $atlet_r = DB::table('admin_cabor')->get();
         return view('admincabor', ['admincabor' => $atlet_r]);
     }
-    // UPDATE
+    // Update Admin Cabor dan Data Cabor ke view editadmincabor
     public function redirect_update($id)
     {
         $atlet_u = DB::table('admin_cabor')->get()->where("id", $id);
-        $atlet = DB::table('cabor')->get();
+        $atlet = DB::table('data_cabor')->get();
         return view('editadmincabor', ['admincabor' => $atlet_u, 'cabor' => $atlet]);
     }
     public function update(Request $r)
@@ -61,7 +63,7 @@ class AdminCaborController extends Controller
         ]);
         return redirect('/Data-admincabor');
     }
-    // DELETE
+    // Delete Data Admin Cabor
     public function delete($id)
     {
         DB::table('admin_cabor')->where('Nama', $id)->delete();
@@ -76,3 +78,4 @@ class AdminCaborController extends Controller
         return view('admincabor', ['cabor' => $atlet]);
     }
 }
+//Catatan : Semua alur ada di routes,jadi sering liat2 routes di halaman routes

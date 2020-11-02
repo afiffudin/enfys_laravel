@@ -48,7 +48,7 @@ class LoginController extends Controller
     public function loginProses(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
         $user = User::where('email', $request->email)->first();
         if ($user) {
 
@@ -56,6 +56,7 @@ class LoginController extends Controller
                 \Session::put('email', $request->email);
                 \Session::put('level', $user->level);
                 return redirect('/dashboard');
+                // dd($request->all());
             }
         } else {
             return redirect()->back()->with('message', 'Email salah');

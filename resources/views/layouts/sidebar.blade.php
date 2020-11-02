@@ -24,7 +24,7 @@
       <li class="header">MAIN NAVIGATION</li>
       @if(Auth::user()->role_id == 1)
       <li class="treeview">
-        <a href="{{url ('/dashboard') }}">
+      <li class="active"><a href="{{url ('/dashboard') }}">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
       <li class="treeview">
         <i class="fa fa-building"></i> <span>Data Master Admin</span>
@@ -33,11 +33,26 @@
         </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{url ('#') }}"><i class="fa fa-circle-o"></i> Buat Login Admin</a></li>
+          <li><a href="{{url ('/login-admin/tambah') }}"><i class="fa fa-circle-o"></i> Buat Login Admin</a></li>
           <!-- <li><a href="{{url ('/Data-Company') }}"><i class="fa fa-circle-o"></i> Nama Company</a></li> -->
       </li>
     </ul>
     </li>
+    <!-- <li class="treeview"> -->
+    <!-- <i class="fa fa-building"></i> <span>Monitoring</span> -->
+    <!-- <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+      </span>
+      </a>
+      <ul class="treeview-menu">
+        <li class="active"><a href="{{url ('/lihat-jadwal')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal CABOR/PIC</a></li>
+        <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Pertandingan</a></li>
+        <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Kedaraan</a></li>
+        <li><a href="{{url ('#')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal Harian</a></li>
+        <li><a href="{{url('/Data-Status')}}"><i class="fa fa-circle-o"></i> Update Status Terakhir</a></li>
+        <li><a href="{{url ('/serah-terima/read')}}"><i class="fa fa-circle-o"></i> Serah Terima/Pengambilan</a></li>
+        <!---li class="active"><a href="#"><i class="fa fa-circle-o"></i>Emergency</a></@li>!--->
+    <!-- <li class="treeview"> -->
     <!-- <li class="treeview"> -->
     <!-- <a href="#"> -->
     <!-- <i class="fa fa-user-plus"></i> <span>Role user</span> -->
@@ -79,28 +94,13 @@
     <!-- </li> -->
     <!-- </ul> -->
     <!-- </li> -->
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-desktop"></i> <span>Monitoring</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <!-- <li class="active"><a href="{{url ('/lihat-jadwal')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal CABOR/PIC</a></li> -->
-        <li class="active"><a href="{{url ('/lihat-jadwal')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal CABOR/PIC</a></li>
-        <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Pertandingan</a></li>
-        <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Kedaraan</a></li>
-        <li><a href="{{url ('#')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal Harian</a></li>
-        <!-- <li><a href="{{url('/Data-Status')}}  "><i class="fa fa-circle-o"></i> Update Status Terakhir</a></li> -->
-        <!---li class="active"><a href="#"><i class="fa fa-circle-o"></i>Emergency</a></@li>!--->
-        <!-- <li><a href="{{url ('/serah-terima/read')}}"><i class="fa fa-circle-o"></i> Serah Terima/Pengambilan</a></li> -->
-    </li>
-    </ul>
+
     @elseif(Auth::user()->role_id == 2)
     <li class="treeview">
-      <a href="{{url ('/dashboard') }}">
-        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+    <li class="active"><a href="{{url('/dashboard')}}">
+        <i class="fa fa-dashboard"></i><span>Dashboard</span>
+        <span class="pull-right-container">
+        </span>
       </a>
     </li>
     <li class="treeview">
@@ -111,8 +111,8 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{url ('/Data-Atlet') }}"><i class="fa fa-circle-o"></i> ATLIT</a></li>
-        <li><a href="{{url ('/Data-admincabor') }}"><i class="fa fa-circle-o"></i> ADMIN CABOR</a></li>
+        <li><a href="{{url('/Data-Atlet') }}"><i class="fa fa-circle-o"></i> ATLIT</a></li>
+        <li><a href="{{url('/Data-admincabor') }}"><i class="fa fa-circle-o"></i> ADMIN CABOR</a></li>
         <li><a href="{{url('/Data-cabor')}}"><i class="fa fa-circle-o"></i> CABOR</a>
         <li><a href="{{url('/ketuakoni')}}"><i class="fa fa-circle-o"></i> Ketua Koni</a></li>
     </li>
@@ -134,16 +134,18 @@
     </li>
     <li class="treeview">
       <a href="#">
-        <i class="fa fa-desktop"></i> <span>Monitoringg</span>
+        <i class="fa fa-desktop"></i> <span>Monitoring</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
       <ul class="treeview-menu">
         <li class="active"><a href="{{url ('/lihat-jadwal')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal CABOR/PIC</a></li>
-        <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Pertandingan</a></li>
-        <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Kedaraan</a></li>
-        <li><a href="{{url ('#')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal Harian</a></li>
+        <li><a href="{{url ('/cabor-perkategori') }}"><i class="fa fa-circle-o"></i> Pertandingan</a></li>
+        <!-- <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Kedaraan</a></li> -->
+        <li><a href="{{url ('/jadwal-harian')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal Harian</a></li>
+        <li><a href="{{url ('/serah-terima/read')}}"><i class="fa fa-circle-o"></i> Serah Terima/Pengambilan</a></li>
+
     </li>
     </ul>
     <li class="treeview">
@@ -160,44 +162,54 @@
     </li>
     @elseif(Auth::user()->role_id == 3)
     <li class="treeview">
-      <a href="#">
+    <li class="active"><a href="{{url('/dashboard')}}">
         <i class="fal fa-tachometer-alt"></i><span>Dashboard</span>
-        <span class="pull-right-container">
-          <i class="fa fa-tachometer-alt"></i>
-        </span>
-      </a>
-      <!-- <li class="active"><a href="{{url ('#')}}"><i class="fa fa-circle-o"></i>Master</a></li> -->
-      <!-- <li><a href="#"><i class="fa fa-circle-o"></i> User</a></li> -->
-    </li>
-    @elseif(Auth::user()->role_id == 4)
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-tachometer-alt"></i><span>Dashboard</span>
         <span class=" pull-right-container">
           <i class="fa fa-tachometer-alt"></i>
         </span>
       </a>
-      <ul class="treview-menu">
-        <li class="active"><a href="{{url('')}}"><i class="fa fa-calender"></i>Jadwal</a></li>
-        <!-- <li class="active"><a href="{{url ('#')}}"><i class="fa fa-circle-o"></i>Master</a></li> -->
-        <!-- <li><a href="#"><i class="fa fa-circle-o"></i> User</a></li> -->
+    <li class="treeview-menu">
+    <li class="active"><a href="{{url ('/lihat-jadwal')}}"><i class="fa fa-circle-o"></i>Jadwal</a></li>
+    <li><a href="{{url ('/cabor-perkategori') }}"><i class="fa fa-circle-o"></i> Status Jadwal Pertandingan</a></li>
+    <li><a href="{{url ('/lihat-serah-terima/read')}}"><i class="fa fa-circle-o"></i> Form Inventaris</a></li> </a>
     </li>
-    </ul>
+    <!-- <li class="active"><a href="{{url ('#')}}"><i class="fa fa-circle-o"></i>Master</a></li> -->
+    <!-- <li><a href="#"><i class="fa fa-circle-o"></i> User</a></li> -->
     </li>
-    @elseif(Auth::user()->role_id == 5)
+    @elseif(Auth::user()->role_id == 4)
+    <li class="treeview">
+    <li class="active"><a href="{{url('/dashboard')}}">
+        <i class="fa fa-dashboard"></i><span>Dashboard</span>
+        <span class=" pull-right-container">
+          <i class="fa fa-tachometer-alt"></i>
+        </span>
+      </a>
     <li class="treeview">
       <a href="#">
-        <i class="fa fa-cogs"></i> <span>Dashboard</span>
+        <i class="fa fa-desktop"></i> <span>Monitoring</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="active"><a href="{{url ('#')}}"><i class="fa fa-calendar"></i>Dashboarad</a></li>
-        <!----li><a href="#"><i class="fa fa-circle-o"></i> Update Status Terakhir</a></!----li>!--->
-        <!---li><a href="{{url('/serah-terima/create')}}"><i class="fa fa-circle-o"></i> Buat Serah Terima</a></!---li!--->
+        <li class="active"><a href="{{url ('/lihat-jadwal')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal CABOR/PIC</a></li>
+        <li><a href="{{url ('/cabor-perkategori') }}"><i class="fa fa-circle-o"></i> Pertandingan</a></li>
+        <!-- <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Kedaraan</a></li> -->
+        <li><a href="{{url ('/jadwal-harian')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal Harian</a></li>
+        <li><a href="{{url ('/serah-terima/read')}}"><i class="fa fa-circle-o"></i> Serah Terima/Pengambilan</a></li>
     </li>
     </ul>
+    <!-- <li class="active"><a href="{{url('')}}"><i class="fa fa-calender"></i>Jadwal</a></li> -->
+    <!-- <li class="active"><a href="{{url ('#')}}"><i class="fa fa-circle-o"></i>Master</a></li> -->
+    <!-- <li><a href="#"><i class="fa fa-circle-o"></i> User</a></li> -->
+    </li>
+    </ul>
+    </li>
+    @elseif(Auth::user()->role_id == 5)
+    <li class="treeview">
+    <li class="active"><a href="{{url('/dashboard')}}">
+        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+      </a>
     </li>
     <li class="treeview">
       <a href="#">
@@ -208,9 +220,9 @@
       </a>
       <ul class="treeview-menu">
         <li class="active"><a href="{{url ('/lihat-jadwal')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal CABOR/PIC</a></li>
-        <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Pertandingan</a></li>
-        <li><a href="{{url ('')}}"><i class="fa fa-circle-o"></i> Kedaraan</a></li>
-        <li><a href="{{url ('#')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal Harian</a></li>
+        <li><a href="{{url ('/cabor-perkategori')}}"><i class="fa fa-circle-o"></i> Pertandingan</a></li>
+        <li><a href="{{url('/ketuakoni')}}"><i class="fa fa-circle-o"></i> Ketua Koni</a></li>
+        <li><a href="{{url ('/jadwal-harian')}}"><i class="fa fa-circle-o"></i> Lihat Jadwal Harian</a></li>
     </li>
     </ul>
     </li>
@@ -219,4 +231,4 @@
     @endif
   </section>
   <!-- /.sidebar -->
-</aside>e
+</aside>

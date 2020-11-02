@@ -5,7 +5,7 @@
 @section('content')
 
 <Datatable>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/3.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -61,7 +61,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>NAMA</th>
+                            <th>NAMA ADMIN CABOR</th>
                             <th>NAMA CABOR</th>
                             <th>EMAIL</th>
                             <th>USERNAME</th>

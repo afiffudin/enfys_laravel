@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class SuperAdminControllers extends Controller
 {
+    //Ini add data master atlet
     public function add(Request $request)
     {
         DB::table('data_master_atlet')->insert([
@@ -27,3 +28,4 @@ class SuperAdminControllers extends Controller
         return view('atlet', compact('atlet'));
     }
 }
+///Catatan : Semua alur ada di routes,jadi sering2 liat di routes ya

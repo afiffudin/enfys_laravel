@@ -13,6 +13,7 @@ class CekRole
      * @param  \Closure  $next
      * @return mixed
      */
+    //Ini middleware cek role siapa aja yg login
     public function handle($request, Closure $next)
     {
         $roles = $this->CekRoute($request->route());
@@ -22,7 +23,7 @@ class CekRole
         }
         return abort(503, 'Anda tidak memiliki hak akses');
     }
-
+    //Ini midleware cek route buat cek roles nya siapa aja
     private function CekRoute($route)
     {
         $actions = $route->getAction();

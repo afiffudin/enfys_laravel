@@ -93,7 +93,7 @@ $_SESSION['pesan'] = '';
 </section>
 <script src="jquery.min.js"></script>
 <script>
-    //            angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
+    //angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
     $(document).ready(function() {
         setTimeout(function() {
             $(".pesan").fadeIn('slow');

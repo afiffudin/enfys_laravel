@@ -50,3 +50,4 @@ class MonitoringController extends Controller
         return redirect('/Data-monitoring');
     }
 }
+//Catatan : Semua alur Ada di routes,jadi sering2 liat routes ya

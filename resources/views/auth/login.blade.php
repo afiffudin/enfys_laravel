@@ -35,7 +35,7 @@
                   {{ \Session::get('message') }}
                 </div>
                 @endif
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"">
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                   <label class=" label">Email</label>
                   <div class="input-group">
                     <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -54,10 +54,11 @@
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                   <label class="label">Password</label>
                   <div class="input-group">
-                    <input id="password" type="password" class="form-control" name="password" required>
+                    <input id="myInput" type="password" class="form-control" name="password" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <input type="checkbox" onclick="myFunction()">
+                        <!-- <i class="mdi mdi-check-circle-outline"></i> -->
                       </span>
                     </div>
                     @if ($errors->has('password'))
@@ -75,6 +76,16 @@
             </div>
           </div>
         </div>
+        <script>
+          function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+          }
+        </script>
         <!-- content-wrapper ends Herziwp@gmail.com -->
       </div>
       <!-- page-body-wrapper ends -->

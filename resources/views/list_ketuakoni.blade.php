@@ -109,7 +109,7 @@
             })
         </script>
         <script>
-            @include('modal.addcabor')
+            @include('modal.addcabor') ///ini include ke modal/addcabor 
             @endsection
         </script>
 </body>

@@ -55,48 +55,49 @@
         </body>
     </form>
     <!-- Script -->
-    <script type='text/javascript'>
-        $(document).ready(function() {
-            // Department Change
-            $('#Tanggal_keberangkatan').change(function() {
-                // Department id
-                var id = $(this).val();
-                // Empty the dropdown
-                $('#Inventaris_mobil').find('option').not(':first').remove();
-                // AJAX request 
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: '/jadwal/' + id,
-                    type: 'get',
-                    dataType: 'json',
-                    success: function(response) {
-                        var len = 0;
-                        console.log(response['data']['Inventaris_mobil']);
+    <!-- Ajax  -->
+    <!-- <script type='text/javascript'> -->
+    <!-- $(document).ready(function() { -->
+    <!-- // Department Change -->
+    <!-- $('#Tanggal_keberangkatan').change(function() { -->
+    <!-- // Department id -->
+    <!-- var id = $(this).val(); -->
+    <!-- // Empty the dropdown -->
+    <!-- $('#Inventaris_mobil').find('option').not(':first').remove(); -->
+    <!-- // AJAX request  -->
+    <!-- $.ajaxSetup({ -->
+    <!-- headers: { -->
+    <!-- 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') -->
+    <!-- } -->
+    <!-- }); -->
+    <!-- $.ajax({ -->
+    <!-- url: '/jadwal/' + id, -->
+    <!-- type: 'get', -->
+    <!-- dataType: 'json', -->
+    <!-- success: function(response) { -->
+    <!-- var len = 0; -->
+    <!-- console.log(response['data']['Inventaris_mobil']); -->
 
-                        /// alert(response['data']['Inventaris_mobil']);
-                        if (response['data'] != null) {
+    <!-- /// alert(response['data']['Inventaris_mobil']); -->
+    <!-- if (response['data'] != null) { -->
 
-                            len = response['data'].length;
-                        }
-                        if (len > 0) {
-                            // Read data and create 
-                            for (var i = 0; i < len; i++) {
-                                console.log(response);
-                                var Tanggal_keberangkatan = response['data'][i].Tanggal_keberangkatan;
-                                var Inventaris_mobil = response['data'][i].Inventaris_mobil;
-                                var option = "<option value='" + Tanggal_keberangkatan + "'>" + Inventaris_mobil + "</option>";
-                                $("#Inventaris_mobil").append(option);
-                            }
-                        }
+    <!-- len = response['data'].length; -->
+    <!-- } -->
+    <!-- if (len > 0) { -->
+    <!-- // Read data and create  -->
+    <!-- for (var i = 0; i < len; i++) { -->
+    <!-- console.log(response); -->
+    <!-- var Tanggal_keberangkatan = response['data'][i].Tanggal_keberangkatan; -->
+    <!-- var Inventaris_mobil = response['data'][i].Inventaris_mobil; -->
+    <!-- var option = "<option value='" + Tanggal_keberangkatan + "'>" + Inventaris_mobil + "</option>"; -->
+    <!-- $("#Inventaris_mobil").append(option); -->
+    <!-- } -->
+    <!-- } -->
 
-                    }
-                });
-            });
+    <!-- } -->
+    <!-- }); -->
+    <!-- }); -->
 
-        });
+    <!-- }); -->
     </script>
     @endsection

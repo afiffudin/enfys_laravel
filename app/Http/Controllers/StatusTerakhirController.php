@@ -14,3 +14,4 @@ class StatusTerakhirController extends Controller
         return view('.pages.StatusTerakhir', ['Status' => $Status_terakhir]);
     }
 }
+//Catatan : Semua Alur ada di routes,jadi sering2 liat di routes ya.
